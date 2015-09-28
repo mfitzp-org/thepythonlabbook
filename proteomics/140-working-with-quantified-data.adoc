@@ -1,0 +1,6 @@
+== Working with quantified data
+
+
+=== MaxQuant
+
+MaxQuant outputs a number of standard files following a quantification run.

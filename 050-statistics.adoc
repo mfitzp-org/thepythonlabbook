@@ -1,0 +1,17 @@
+== Statistics
+
+=== Introducing SciPy
+
+=== Introducing sci-kit learn
+
+
+=== T-tests, etc.
+
+=== ANOVA
+
+=== Multivariate analysis (PCA, PLS, PLS-DA)
+
+
+
+
+=== `scipy.optimize`

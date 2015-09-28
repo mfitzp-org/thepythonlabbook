@@ -1,0 +1,34 @@
+== Proteomics Software and Data formats
+
+=== Mass Spectrometry formats
+
+There is a good review of all available mass spectrometry formats
+in <<Deutsch2012>>.
+
+
+
+==== Vendor formats (Thermo RAW, )
+
+==== mzML
+==== mzIdentML
+==== mzXML
+==== TraML
+==== mzData
+
+
+=== Software
+
+
+==== MaxQuant
+
+MaxQuant is ‘quantitative proteomics’ software which handles the
+analysis step from raw mass spectra to quantified proteins. It
+is designed for high-resolution MS data and supports quantification
+via multiple labelling techniques and label-free quantification.
+
+If reads RAW-format mass spectrometry files and writes out the
+quantified proteins as standardized tab-delimited text.
+
+TIP: You can download MaxQuant from the homepage at: http://www.maxquant.org
+
+WARNING: This software is freely available but not _yet_ open source.

@@ -1,0 +1,986 @@
+== Python Basics
+
+Before you can use Python for your science, you're going to need to learn
+Python, right? No, not exactly. The goal here is to teach you how to use
+Python for your science, and no more. However, there are still some common
+concepts that it is useful to understand.
+
+This chapter presumes no previous knowledge of Python or programming. It will
+introduce common concepts including variables, functions, iteration, comprehension
+and classes. If that sounds deathly boring, it is because it is. But it will
+be over quickly, and then you can get on to making awesome science.
+
+TIP: The information here is more than enough to follow this book and do some
+great science. If you find yourself wanting to learn more about these things in
+depth you can take a look at our [recommended resources].
+
+=== Mathematical operators
+
+Let's ease into things with some simple sums. Python provides a set of basic
+operators for performing calculations and helpfully, you can enter these
+calculations literally into the Python interpreter.
+
+==== Basic operators
+
+The operators available are: addition `a+b`, subtraction `a-b`, division `a/b`,
+power x^n `x**n`. There should be no surprises here:
+
+[source,python]
+----
+>>> 1 + 5
+6
+
+>>> 5 - 7
+-2
+
+>>> 8 / 2
+4.0
+
+>>> 8 / 3
+2.6666666666666665
+
+>>> 2 ** 8
+256
+----
+
+WARNING: If you're using Python2.7 you'll notice that `/` will give you a different
+results: +
+`8 / 2 = 4` +
+`8 / 3 = 2` +
+This is because before Python3 `/` performed _integer division_ on whole numbers.
+If you place a `.0` at the end of the numbers this changes their _type_ and performs
+the calculation using _float division_: +
+`8.0 / 2 = 4.0` +
+`8.0 / 3 = 2.6666666666666665` +
+Much better! We will discuss _integers_ and _floats_ in more detail later in this chapter.
+
+
+==== Strange ones
+
+There are a few additional operators which you may not be familiar with but will
+find useful. These
+are modulus `a%b` and integer division `a//b`. These operators are related in
+a useful way. _Integer division_ performs division but _always_ returns a whole
+number, throwing away the remainder. _Modulus_ gives you that remainder.
+
+[source,python]
+----
+>>> 6 // 3
+2
+
+>>> 6 % 3
+0
+
+>>> 7 // 3
+2
+
+>>> 7 % 3
+1
+----
+
+These operators become particularly useful when you're trying to do something to every
+__n__th value or you want to split large numbers into upper and lower parts.
+
+[source,python]
+----
+>>> 123456 // 1000
+123
+
+>>> 123456 % 1000
+456
+----
+
+
+=== Comparisons
+
+Is 2 bigger than 1? Yes. But how do you ask the same question in Python?
+Python provides a number of _comparison operators_ that allow you
+to describe these sorts of comparisons in your code. If you have any
+experience with mathematics some of these will be quite familiar.
+
+
+==== `is` Weirdness
+
+It is important to remember that `is` tests of object sameness, not equivalance.
+Imagine you have two piles of 10 apples. While these two piles are _equal_ you
+would not argue they are _the same_ pile.
+
+There are few hidden quirks of how Python work that can be exposed — intentionally,
+or accidentally — by incorrect use of `is`. For example, Python stores `str` of
+20 or less characters only once - re-using the strings just re-references this store.
+This means that two identical `str` of 20 chacters or less are both _equal_ and
+_the same_, while identical longer strings are only _equal_.
+
+    x = 'a' * 20
+    y = 'a' * 20
+    x is y
+    True
+
+    x = 'a' * 21
+    y = 'a' * 21
+    x is y
+    False
+
+The same principal applies to numbers less than or equal to 256 (not coincidentally
+the size of one `byte`):
+
+    a = 256
+    b = 256
+    a is b
+    True
+
+    a = 257
+    b = 257
+    a is b
+    False
+
+But, if you assign the two values at the same time they become _the same_ again.
+
+    a = 257; b = 257
+    a is b
+    True
+
+If this seems like weird voodoo magic don't worry. This who issue is neatly
+sidestepped by using `is` correctly. Only use `is` when you want to test that
+two _objects_ are the same. You almost never want to do this — with testing against
+None being the obvious exception. If in doubt use `==`.
+
+
+=== Variables
+
+
+In computer programming, a variable or scalar is a storage location paired with
+an associated symbolic name (an identifier), which contains some known or unknown
+quantity or information referred to as a value. The variable name is the usual
+way to reference the stored value; this separation of name and content allows
+the name to be used independently of the exact information it represents.
+The identifier in computer source code can be bound to a value during run
+time, and the value of the variable may thus change during the course of
+program execution.
+
+
+==== integers `int`
+
+An _integer_ is a whole number with no fractional parts. For example `4` is an integer
+while `4.5` is not. In programming the concept of integer is slightly stricter
+than you might think. Is `4.0` an integer? Mathematically yes, computationally no.
+
+You can use the `int` type to cast `float` values to an `int`. This will throw
+away any fractional part of the number.
+
+[source,python]
+----
+>>> int(4.3)
+4
+
+----
+
+==== floats `float`
+
+A _float_ is a floating-point representation of a number.
+
+
+`float` is not used with financial data for this reason. Over time this small
+error will accumulate into missing fractions of money — and _nobody_ likes losing money.
+Depending on your applications you can normally ignore this: the precision is
+simply _good enough_ to not cause problems at the scale you're working.
+
+
+==== character strings `str`
+
+Strings in Python (3+) are represented using _unicode_.
+If you don't know what that is don't worry, you probably won't need to know
+anything much about it. In simple terms _unicode_ is a way of _encoding_ characters in a portable way.
+It provides support for complex characters (think of all the non-English alphabets)
+right-to-left text and even emoji (👍).
+
+In practise you can just think `str` is ‘text’ and leave it at that.
+
+TIP: In earlier versions of Python `str` was _not_ unicode. However you could
+define unicode string literals using `u'my unicode string'` syntax.
+
+==== byte strings `byte`
+
+Byte strings are _simple strings_ that do not support unicode. Instead they are
+based on the ASCII standard allowing for 256 (or one _byte_ worth of) characters.
+These are now most commonly used for network protocols where unicode
+is not supported. You probably won't make much use of these, but they are
+worth knowing about.
+
+==== tuples `tuple`
+==== lists `list`
+==== sets `set`
+==== dictionaries `dict`
+
+Dictionaries are simple data stores where _values_ are stored attached to a
+given _key_. Stored values can be retried by reference to the same key in
+future. Keys must be unique, but values may be the same.
+
+You can define a dictionary using the `dict` type as follows:
+
+[source,python]
+----
+>>> my_dict = dict()
+>>> my_dict['a'] = 'hello'
+----
+
+You can read the values out by key as follows:
+
+[source,python]
+----
+>>> my_dict['a']
+'hello'
+----
+
+You can also define dictionaries using the `{'key':value}` literal syntax:
+
+[source,python]
+----
+>>> my_dict = {'a':'hello', 'b':'goodbye'}
+>>> my_dict['b']
+'goodbye'
+----
+
+===== Storing multiple values under a single key
+
+It is possible to store multiple values by using other Python types as values. For
+example you could store a list of values under a single key.
+
+[source,python]
+----
+>>> my_dict = dict()
+>>> my_dict['a'] = [1,2,3,4]
+>>> my_dict
+{'a': [1, 2, 3, 4]}
+
+>>> my_dict['a']
+[1, 2, 3, 4]
+----
+
+You can even store dictionaries as values in dictionaries.
+
+[source,python]
+----
+>>> my_dict = dict()
+>>> my_dict['c'] = {'d': 'whatever', 'e': 'you', 'f': 'like'}
+>>> my_dict
+{'c': {'e': 'you', 'd': 'whatever', 'f': 'like'}}
+----
+
+TIP: As a general rule you don't want to mix simple and complex types in
+your dictionary values.
+
+===== Default values with `defaultdict`
+
+
+===== Counting occurrences `Counter`
+
+
+==== arrays `ndarray`
+
+There is a native `array` type in Python which behaves like a type-constrained list.
+However, we won't be using it — instead we'll be focusing on the much more flexible _NumPy_ array type
+`ndarray`. This supports multi-dimensional arrays (2D, 3D, and more) of mixed and complex
+types and gives us access to powerful _NumPy_ and _SciPy_ data analysis functions.
+
+_NumPy_ arrays are defined as...
+
+==== booleans `True` and `False`
+
+_Boolean_ values are those with two possible states for example
+_true and false_ or _1 and 0_. Python defines two types to
+represent `True` and `False` and these can be used to test
+equality.
+
+The examples below give a quick overview of how `True` and `False`
+values can be used:
+
+[source,python]
+----
+>>> 1 is 1
+True
+
+>>> True == True
+True
+
+>>> True == False
+False
+
+>>> (1 == 1) == True
+True
+
+>>> (1 == 2) == True
+False
+
+>>> (1 == 2) == False
+True
+----
+
+In _NumPy_ `True` and `False` values are also commonly used
+for _masking_ — or _selecting_ — values from arrays. This will
+be covered in more detail in the next chapter.
+
+
+
+==== `None` of the above
+
+So far you've been introduced to variable types for representing
+numbers, strings of characters, lists, groups and dictionaries
+of objects, arrays and true and false values. But sometimes you'll
+want a value that is decicdely d) none of the above.
+
+.This is a picture of nothing.
+image::./img/030-python-none.jpg[]
+
+Python provides for this in the `None` type.
+Here are some things about `None`:
+
+- `None` is equal to `None`
+- `None` is not equal to _anything_ else
+- all things that are `None` are equal
+- all things that are `None` are the same
+
+If the last two seem a little esoteric don't worry. Look at the examples below
+to understand what is going on:
+
+.`None` is equal to itself
+[source, python]
+----
+>>> None == None
+True
+
+>>> None > None
+False
+----
+
+.`None` is not equal to _anything_ else
+[source, python]
+----
+>>> 1 == None
+False
+
+>>> 'hello' == None
+False
+----
+
+.All things that are `None` are equal
+[source, python]
+----
+>>> a = None
+>>> b = None
+
+>>> a == None
+True
+
+>>> a == b
+True
+----
+
+.All things that are `None` are the same
+[source, python]
+----
+>>> a = None
+>>> b = None
+
+>>> a is None
+True
+
+>>> a is b
+True
+----
+
+The common use for `None` is as a representation of a non-existent value. For the
+sake of your sanity it's best to stick with this approach.
+
+TIP: Don't use `None` to mean _something_.
+
+==== `inf` and beyond
+
+There are two other not-really-a-number numbers
+provided by _numpy_ that you may encounter. These are
+`nan` and `inf`.
+
+"Not a number" or `nan` is used whenever a number
+was expected but was not found — if you read a
+`str` value into a numeric array, for example. Since it is not possible to represent
+the string "Slartibartfast" as a number a `nan` will be used
+in its place. Later we'll see how `nan` value can also be used as
+_filler_ in arrays for values that you want to ignore.
+
+When numeric calculations
+go out of bounds or produce an unrepresentable number you'll instead
+see infinity: `inf` or
+its negative partner `-inf`. This indicates that what is there
+_is a number_ but not one you can do anything with.
+
+There is not much more to say about that.
+
+==== Equality
+
+To test for equality use the double-equals `==` sign.
+
+[source,python]
+----
+>>> 1 == 2
+False
+
+>>> 1 == 1
+True
+----
+
+WARNING: A single `=` is
+used to assign a value to a variable. Mixing these up is a common source of
+bugs, but Python will usually tell you when you do it.
+
+[source,python]
+----
+>>> 1 = 1
+----
+----
+SyntaxError: can't assign to literal
+----
+
+[source,python]
+----
+if a = 1:
+   print("OK")
+----
+----
+SyntaxError: invalid syntax
+----
+
+You can also test if something is greater `>`, less than `<`,
+greater or equal `>=` and less than or equal `<=` to something else.
+
+
+[source,python]
+----
+>>> 5 > 2
+True
+
+>>> 2 > 2
+False
+
+>>> 2 >= 2
+True
+
+>>> 5 >= 6
+False
+
+>>> 6 <= 6
+True
+
+>>> 5 <= 6
+True
+
+>>> 2 < 6
+True
+
+>>> 2 < 2
+False
+----
+
+TIP: The order of the `>` or `<` and the `=` is important. If you write `=>` you will
+get an error. Remember it as ``greater or equal'' and ``less than, equal'' you'll
+get it in the right order.
+
+
+==== Sameness
+
+`is`
+
+==== Negation
+
+
+==== Combining operators
+
+
+=== Control structures `if...elif...else`
+
+
+
+=== Iteration
+
+You will often find yourself wanting to do things _more than once_. The naïve way
+to do this is to copy and paste your code multiple times. But this is a _bad idea_.
+If you find a bug in your code, you now have to fix it in multiple places. What happens if you miss one?
+Bad things, that's what.
+
+Thankfully Python provides a nice simple way to get things done _over and over again_. In
+programming parlance this is called _iteration_. You will also hear the phrase
+_iterate over_ which means working — one item at a time — through a sequence.
+We'll take a close look at those now.
+
+==== The `for...in` loop
+
+
+
+==== For a `while`
+
+Sometimes you don't know how long your loop needs to go on. In that case you
+can't provide a range to the `for` loop as you don't know how big it needs to be.
+Instead you can use the `while` construct which continues to loop
+_while_ something is `True`.
+
+[source,python]
+----
+
+----
+
+A special case of this that you might find yourself using is the _infinite loop with break_.
+Here we set `True` as the loop conditional which as we already know _always equals_ `True`.
+The loop will continue until `break` is reached and the loop exits.
+
+[source,python]
+----
+n = 0
+
+while True:
+    n += 1
+    if n > 100:
+        break
+----
+
+This construct can be useful when waiting for another task (or a remote API) to
+complete. But in that case you will want to add a wait into the loop to avoid
+being antisocial.
+
+
+=== Functions
+
+As your scripts grow in size you'll start to notice that you re-use common pieces
+of code in different places. This can become messy and cause problems for
+maintenance —
+
+The solution to this is to use _functions_ to
+
+
+
+
+=== List, Dict Comprehensions
+
+=== Imports and Modules
+
+
+=== Classes
+
+
+=== Exceptions
+
+=== Regular Expressions
+
+=== `lambda` functions
+
+This is a shorthand notation for _really simple_ functions that can be
+encapsulated in a single line. You won't find yourself using them an
+awful lot, but it's a good tool to have in your kit.
+
+The basic syntax for lambdas is:
+
+[source,python]
+fn = lambda <parameters>:<return calculation>
+
+Unlike standard functions a `lambda` has no return statement, instead simply
+returning what was passed. There is no function name, with the `lambda` instead
+assigned to a variable. However, parameters follow the same standard function rules.
+
+[source,python]
+----
+>>> add1 = lambda x:x+1
+
+>>> add1(1)
+2
+----
+
+[source,python]
+----
+>>> makedict = lambda **kwargs:kwargs
+
+>>> makedict(hello=1)
+{'hello': 1}
+----
+
+One common use of lambdas is to extract a key from a tuple for sorting. For
+example the following lambda will extract and return element 1 from the supplied
+`list` or `tuple`:
+
+[source,python]
+lambda k: k[1]
+
+We'll see this in action in a later chapter.
+
+
+=== Delays
+
+You can wait for a while using the `sleep` function available from the `time` module.
+It accepts a duration in seconds (as a `float` for fractional seconds) and waits
+the specified time before returned control.
+
+[source,python]
+----
+>>> from time import sleep
+>>> sleep(3)
+----
+
+=== Input
+
+
+
+
+=== Comments
+
+It is often useful to explain _in plain language_ what a piece of
+code you have written is doing. In programming these bits of description
+are called `comments'. They are completely ignored by Python while it runs
+your code. It's a good habit to get used to commenting your code
+thoroughly to keep it maintainable and clear.
+
+TIP: If you format comments properly
+they can even be used to automatically generate documentation for your software.
+
+Python supports two types of comment: _inline_ and _block_.
+
+==== Inline comments
+
+Inline comments are single-line additions, usually after the line of source
+code that they are commenting. For example:
+
+[source,python]
+----
+cat = "Otgon"  # A good name for a cat
+----
+
+==== Block comments
+
+Block comments are multi-line and are used for larger chunks of
+documentation. They can be defined  using three single or double
+quotation marks in a row, but double quotes are preferred:
+
+[source,python]
+----
+"""
+This is a multi-line block comment
+that tells you something very interesting.
+"""
+----
+
+TIP: Multi-line comments are actually string literals. You can
+use the same syntax to assign multi-line strings to a variable.
+
+
+
+
+=== Philosophy
+
+If you've had experience with other programming languages, or want
+to understand the way Python works in a little more detail, it
+may be worth reading this short section. If you think ignorance is
+bliss feel free to move on — you don't _need_ to know any of this, though it will
+make you a better Python programmer if you do.
+
+==== Pythonic
+
+If you start hanging around Python programmers you'll start hearing the word
+‘Pythonic’ a lot. _Pythonic_ isn't a set standard, more an agreed idea of
+how Python code _should_ look and be written. It emphasises clarity, simplicity
+and the avoidance of tricks. The goal is to write code that _everyone_ can understand.
+
+The principles underlying Python development have
+been summarised in the _Zen of Python_:
+
+[quote, Tim Peters]
+____
+Beautiful is better than ugly. +
+Explicit is better than implicit. +
+Simple is better than complex. +
+Complex is better than complicated. +
+Flat is better than nested. +
+Sparse is better than dense. +
+Readability counts. +
+Special cases aren't special enough to break the rules. +
+Although practicality beats purity. +
+Errors should never pass silently. +
+Unless explicitly silenced. +
+In the face of ambiguity, refuse the temptation to guess. +
+There should be one-- and preferably only one --obvious way to do it. +
+Although that way may not be obvious at first unless you're Dutch. +
+Now is better than never. +
+Although never is often better than right now. +
+If the implementation is hard to explain, it's a bad idea. +
+If the implementation is easy to explain, it may be a good idea. +
+Namespaces are one honking great idea -- let's do more of those! +
+____
+
+You don't need to learn it but you should try and _remember_ it. How very Zen.
+
+
+==== Needs more PEP (specifically 8)
+
+
+
+
+=== Comments
+
+_Good_ comments are key to _understandable_ code. If you are
+sharing your code with someone else they are _essential_ to
+ensure your aims are clear. By making the purpose of a block of
+code obvious others can check your logic for mistakes.
+
+[source,python]
+-----
+def my_magic_function(x):
+    """
+
+-----
+
+“But, I'm not going to share my code” you say?
+
+What if you come back to this block of code next week, next month, next year?
+If you're over 30 you probably have trouble remembering what
+you did yesterday. Save yourself a headache, comment as you go.
+
+TIP: A good rule of thumb is to comment your code
+clearly enough that its meaning will be clear to you 3 months later, on
+a bad day, with no coffee.
+
+
+==== Loose typing
+
+Python is a _loosely typed_ language which in English means that
+you can assign any type of value to any variable at any time. This
+means that you can do things like this:
+
+[source,python]
+----
+>>> a = 5
+>>> a
+5
+>>> a = 'hello'
+>>> a
+'hello'
+>>> a = 1.2
+>>> a
+1.2
+----
+
+If you're looking at that and thinking “Well, that makes sense.” welcome
+to the club. In many languages you would need to define the `type` of `a`
+when creating it. If we defined it as `int` and then tried to assign a `str` to
+we would get an error.
+
+This _loose typing_ gives you a lot of freedom in your code: you
+don't need to think about how you are going to use a variable before you
+create it, you can store special values such as `None` in any variable and
+you can re-use temporary variables without making sure they are of the correct type.
+
+
+But, just because you _can_ do something doesn't mean you _should_. So think
+carefully about how you re-use variables and keep them descriptive. It also
+leaves you open to _type errors_ where you try to do something with
+a variable thinking it's one type and it's another. Thankfully there are
+is a neat way to deal with this in Python: duck typing.
+
+==== Duck typing
+
+Another core Python concept that it's worth getting your head around
+is that of _duck typing_.
+
+[quote, James Whitcomb Riley]
+When I see a bird that walks like a duck and swims like a duck and quacks like a duck, I call that bird a duck.
+
+What this means in practise is that rather than worrying about what
+_type_ a variable is, instead consider what _properties_ a variable has. This is
+particularly relevant when we start using custom classes. Say we create a custom
+class that has the functionality of a standard Python dictionary.
+We _should_ be able to substitute our new class in for a dictionary and pass this
+to any function we like.
+
+.This passes the duck test (Photo: Alain Carpenter)
+image::./img/030-python-duck.jpg[]
+
+
+But imagine whoever wrote that function didn't know anything about ducks.
+They start out defining the function like this:
+
+[source,python]
+----
+def my_awesome_function(dict_in):
+    """
+    Accepts a variable dict_in of type `dict` and returns it
+    with keys and values swapped (destructive if duplicate values exist!)
+    """
+    dict_out = dict()
+    for key, value in dict_in.items():
+        dict_out[value] = key
+    return dict_out
+----
+
+Lets try executing this:
+
+[source,python]
+----
+>>> data = { 'a':1, 'b':2, 'c':3 }
+>>> data = my_awesome_function(data):
+>>> data
+{ 1:'a', 2:'b', 3:'c' }
+----
+
+But then someone who hasn't read the documentation comes along and tries to
+call the function with a `list`:
+
+[source,python]
+----
+>>> data = [1,2,3,4]
+>>> data = my_awesome_function(data):
+>>> data
+[ERROR]
+----
+
+Well, that doesn't work. But the author of the function wants to catch
+this error more elegantly — perhaps raising a helpful exception to
+describe the problem. Lets update the function:
+
+[source,python]
+----
+def my_awesome_function(dict_in):
+    """
+    Accepts a variable dict_in of type `dict` and returns it
+    with keys and values swapped (destructive if duplicate values exist!)
+    """
+
+    if type(dict_in) != dict:
+        raise Exception("Please supply a dictionary.")
+
+    dict_out = dict()
+    for key, value in dict_in.items():
+        dict_out[value] = key
+    return dict_out
+----
+
+Great! Right? Not really. While this will certainly solve our `list` failure, it
+only works if `dict_in` is _exactly_ of the type `dict`. If we're using a
+subclassed type such as `defaultdict` this will now fail.
+
+[source,python]
+----
+from collections import defaultdict
+my_dict = defaultdict(int)
+
+>>> type(my_dict) == defaultdict
+True
+
+>>> type(my_dict) == dict
+False
+----
+
+We _could_ work around this
+by using `isinstance()`. This returns true if the `dict_in` object is of the
+class `dict` or of _any subclass_ of `dict`:
+
+[source,python]
+----
+>>> isinstance(my_dict, dict)
+True
+----
+
+We could implement this in the function as follows:
+
+[source,python]
+----
+def my_awesome_function(dict_in):
+    """
+    Accepts a variable dict_in of type `dict` and returns it
+    with keys and values swapped (destructive if duplicate values exist!)
+    """
+
+    if isinstance(dict_in, dict):
+        raise Exception("Please supply a dictionary.")
+
+    dict_out = dict()
+    for key, value in dict_in.items():
+        dict_out[value] = key
+    return dict_out
+----
+
+Sorted? Still no. This code will still fail for any `dict`-like object
+that isn't a subclass of `dict`.
+
+So how can we work around this? This brings
+us back to ducks. In the function we use a single feature of the `dict` type:
+the `.items()` property. If that is the feature we want, that is the feature we should test.
+
+The simplest way to do this is simply call the attribute and catch the `Exception`:
+
+[source,python]
+----
+def my_awesome_function(dict_in):
+    """
+    Accepts a variable dict_in of type `dict` and returns it
+    with keys and values swapped (destructive if duplicate values exist!)
+    """
+
+    try:
+        dict_in.items()
+    except AttributeError:
+        raise Exception("Please supply a dictionary-like type.")
+
+    dict_out = dict()
+    for key, value in dict_in.items():
+        dict_out[value] = key
+    return dict_out
+----
+
+We could even re-structure this to avoid the double-call to the `.items()` property,
+as follows:
+
+[source,python]
+----
+def my_awesome_function(dict_in):
+    """
+    Accepts a variable dict_in of type `dict` and returns it
+    with keys and values swapped (destructive if duplicate values exist!)
+    """
+    dict_out = dict()
+
+    try:
+        for key, value in dict_in.items():
+            dict_out[value] = key
+
+    except AttributeError:
+        raise Exception("Please supply a dictionary-like type.")
+
+    return dict_out
+----
+
+Now we take the dictionary `dict_in` and attempt to _use_ it like a dictionary.
+If we catch an `AttributeError` exception (which here can _only_ come from the `dict_in.items()` )
+we raise a more descriptive exception for the user.
+
+[source,python]
+----
+>>> data = [1,2,3,4]
+>>> data = my_awesome_function(data):
+>>> data
+[NICE ERROR]
+----
+
+The _duck typing_ principle is a key part of writing _Pythonic_ code. This example
+also leads us nicely into the next section.
+
+==== Ask for forgiveness, not permission
+
+WARNING: This is a programming principle, not life advice.
+Don't start slapping people in the face and then blaming it on this book.
+
+
+==== Monty Python
+
+Despite what the logo may suggest the Python programming language has nothing
+whatsoever to do with snakes. It is named after the British comedy series
+“Monty Python and the Flying Circus” by the group of the same name. Which
+incidentally also has nothing to do with snakes.
+
+This links shows up various places in the _Python_ world. For example, the
+official Python package repository _PyPi_ is also known by the name
+_Cheeseshop_ after [this sketch]. You don't need to watch Monty Python to
+use the language but you might enjoy it.

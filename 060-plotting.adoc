@@ -1,0 +1,6 @@
+== Plotting
+=== Basic matplotlib
+=== Pandas plotting
+=== Advanced matplotlib
+=== Seaborn
+=== ggplot

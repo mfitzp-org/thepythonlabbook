@@ -1,0 +1,63 @@
+=== nmrglue `nmrglue`
+
+If you are planning on working with raw NMR (Nuclear Magnetic Resonance)
+spectroscopy data then you will want to install this fantastic package.
+It natively reads a large number of NMR formats including
+Varian, Bruker, NMRPipe, and Sparky files, and includes support for
+many common NMR operations including phase and baseline correction.
+
+[source,bash]
+----
+pip3 install nmrglue
+----
+
+=== BioCyc `biocyc`
+
+
+
+[source,bash]
+----
+pip3 install biocyc
+----
+
+NOTE: This package was written by the author (Martin Fitzpatrick).
+Other packages are available.
+
+
+=== MetaboHunter `metabohunter`
+
+MetaboHunter is a simple NMR fitting and quantification tool
+from Dan Tulpan.  Submitted spectra are matched
+peak-wise against a library of known compounds and then regions
+of the spectra assigned to particular metabolites. This approach
+has its limitations, but can be useful for a quick
+overview of spectral components.
+
+There is a Python package available to perform searching and matching
+directly from within your scripts.
+
+[source,bash]
+pip3 install metabohunter
+
+NOTE: This package was written by the author (Martin Fitzpatrick).
+
+
+
+=== Bayesil `bayesil`
+
+Bayesil is a web service NMR fitting and quantification service this
+time from the Wishart lab. This uses a more advanced Bayesian algorithm to
+match and quantify individual spectra. This takes some time but
+provides more more accurate results.
+
+There is a Python package available to perform a spectra quantification
+directly from within your scripts.
+
+[source,bash]
+----
+pip3 install bayesil
+----
+
+
+
+NOTE: This package was written by the author (Martin Fitzpatrick).

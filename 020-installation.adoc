@@ -1,0 +1,80 @@
+=== Installing Python
+
+While this book is based on Python `3.4` many examples will
+also work with version `2.7`. However, if you are starting out with
+Python you should use the latest version available — this is the future!
+
+
+==== Windows
+
+==== Mac
+
+MacOS X comes with a version of Python pre-installed, so the simplest thing to
+do would be to use that version, right? Wrong.
+
+The default installation of Python is both old and tied to the operating
+system. That means you cannot upgrade it without potentially knackering your
+system. Since you paid lots of money for it, lets not do that.
+
+Thankfully there is a simple solution in the form of Homebrew. This is a
+_package manager_ for MacOS X that manages installation of system software
+packages in a non-destructive way. You can even install multiple versions of
+Python if you wish. Helpfully, it also includes a number of pre-made add on
+packages for Python that are sometimes hard to install.
+
+.Homebrew: The missing package manager for OS X
+image::./img/020-installation-homebrew.png[]
+
+To install Homebrew open up a Terminal and enter:
+
+[source,bash]
+----
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+----
+
+TIP: You can copy and paste this command from the Homebrew homepage at http://brew.sh
+
+Once Homebrew has finished installing you can now install a version of Python
+to use for programming. To install software using Homebrew you use the
+`brew install` command, as follows:
+
+[source,bash]
+----
+brew install python3
+----
+
+
+==== Linux
+
+==== Alternatives
+
+===== Anaconda
+
+
+== Installation
+
+=== Environments
+
+==== Jupyter and the Notebook
+
+Jupyter
+
+the Jupyter notebook interface.
+
+Jupyter notebooks enable you to write scripts within a simple web notebook
+environment. It automatically displays code outputs (text, figures, tables)
+and allow interactive re-running of code segments for debugging and
+development. Even better, when you're finished you can save the outputs
+with the notebook - meaning they're there to be viewed when you come
+back to your code.
+
+.The Jupyter notebook management interface
+image::./img/020-installation-jupyter.png[]
+
+TIP: Jupyter notebooks are also a great way to publish your methods alongside
+your results. If you're interested in seeing what other scientists are
+doing with Jupyter there is a list of reproducible publications available at
+http://bit.ly/1Qlrr3T
+
+
+==== Spyder

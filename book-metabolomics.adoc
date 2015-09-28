@@ -1,0 +1,15 @@
+:topic:  Metabolomics
+:topic-lc: metabolomics
+:topic-slug: metabolomics
+
+include::preamble.adoc[]
+
+include::000-100.adoc[]
+
+include::./{topic-slug}/110-introduction-to-metabolomics.adoc[]
+
+include::./{topic-slug}/120-software.adoc[]
+
+include::900-999.adoc[]
+
+include::postamble.adoc[]

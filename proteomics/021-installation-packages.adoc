@@ -1,0 +1,15 @@
+=== pyMaxQuant
+
+
+This is a useful little package to simplify the process of working with
+MaxQuant data in Python. It is built on _Pandas_, _NumPy_ and _SciPy_ meaning
+it's simple to slot into your existing toolkit. You can install it using PyPi
+with the following command:
+
+[source,bash]
+----
+pip3 install pymaxquant
+----
+
+NOTE: This package was written by the author of this book (Martin Fitzpatrick).
+Other packages are available.

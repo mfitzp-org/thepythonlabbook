@@ -1,0 +1,9 @@
+== Introduction
+
+Lab books are an essential way to keep track of methods used to
+generate results. In the same way
+this book is built around a series of reusable examples to produce
+scientific results. By reading, reproducing and exploring these
+examples you will learn to use the Python programming language
+and associated tools to speed up and improve the reproducibility
+of your science.

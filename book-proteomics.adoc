@@ -1,0 +1,19 @@
+:topic:  Proteomics
+:topic-lc: proteomics
+:topic-slug: proteomics
+
+include::preamble.adoc[]
+
+include::000-100.adoc[]
+
+include::./{topic-slug}/110-introduction-to-proteomics.adoc[]
+
+include::./{topic-slug}/120-proteomics-data.adoc[]
+
+include::./{topic-slug}/130-working-with-raw-data.adoc[]
+
+include::./{topic-slug}/140-working-with-quantified-data.adoc[]
+
+include::900-999.adoc[]
+
+include::postamble.adoc[]

@@ -1,0 +1,64 @@
+
+=== Key Packages
+
+==== Quick Start
+
+If you don't want to read the descriptions of the packages to install
+you can skip this section. Just run the following commands to install
+the neccessary packages on your system:
+
+[source,bash]
+----
+pip install matplotlib seaborn ggplot2 pandas
+----
+
+==== The numpy-scipy Stack `numpy scipy`
+
+
+==== Plotting `matplotlib seaborn ggplot2`
+
+.One package to rule them all and in the darkness bind them
+image::./img/020-installation-matplotlib.png[]
+
+If you want to plot something with Python, you're going to use _matplotlib_.
+Started in [] it has established itself as the _de facto_ core plotting
+library for all things Python. Even where alternative plotting libraries exist
+(_seaborn_, _ggplot2_) they all use _matplotlib_ as a backend.
+
+The good news is that it's an incredibly powerful library, the bad news is
+that it has a dated and quirky interface (hence why the other interfaces
+exist). But no fear! With a bit of practise you'll be tweaking out pretty
+publication plots in no time.
+
+To get the best of both worlds we're going to install both matplotlib
+and a couple of alternative interfaces.
+
+[source,bash]
+----
+pip3 install matplotlib seaborn ggplot2
+----
+
+TIP: _ggplot2_ is a Python implementation of the "Grammar of Graphics"
+seen in the R package of the same name. If you have experience with _ggplot_ or
+_ggplot2_ in R you'll feel right at home.
+
+==== Data tables `pandas`
+
+There is a lot of research time spent shuffling around tables of data: usually
+in the format of Excel spreadsheets or CSV (Comma Separated Values) format files.
+If we want to use Python as part of our data shuffling workflow, it needs to be
+able to read and write these files itself. Helpfully there is an library
+for doing just that called _Pandas_.
+
+.This panda knows nothing about Excel.
+image::./img/020-installation-panda.png[]
+
+_Pandas_ neatly integrates with the _numpy_ and _scipy_ packages allowing
+for some really powerful data analysis. It even comes with it's own
+simple plotting functions (built on, you guessed it, _matplotlib_). We
+can install it just like any other Python package:
+
+[source,bash]
+----
+pip3 install pandas
+----

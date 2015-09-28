@@ -1,0 +1,21 @@
+
+=== Check your setup
+
+Now you have all packages installed and set up, it is worth
+taking a moment to test the installation with a few quick
+examples. Run the following snippets of code in your chosen
+environment and check whether they:
+
+a. work
+b. produce the same output
+
+If you find something is not quite right, take a step back
+and double check you have installed everything correctly. This
+will save you much confusion later on!
+
+TIP: If you can't figure out what is wrong, try uninstalling
+each package and re-installing it again.
+
+WARNING: Restart Python after each change (or restart your
+kernel if in Spyder or IPython). This is the programming
+equivalent of turning it on and off again.

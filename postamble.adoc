@@ -1,0 +1,31 @@
+
+include::./bibliography.adoc[]
+
+include::./{topic-slug}/bibliography.adoc[]
+
+
+== Acknowledgements
+
+This book would not have been possible without electricity, beer or vleeskroketten.
+
+
+== Copyright
+
+This book is licensed under the
+Creative Commons Attribution Share-alike Non-commercial license (CC-BY-SA-NC) +
+(C)2015 Martin Fitzpatrick.
+
+- You are free to share unaltered copies of this book with anyone you choose.
+- If you modify this book and distribute your altered version it must be distributed under the same license.
+- You are not permitted to sell this book or derivatives in any format.
+- If you would like to support the author you can _legally_ purchase a copy direct
+from the author(s).
+
+Contributions and corrections from readers (CC-BY-SA) are most welcome.
+
+Openness is key to scientific discovery and progress. These same
+principles must also apply to scientific software where, without
+open access to source code it is impossible to honestly asses and
+evaluate research methods. In keeping with this philosophy every
+Python package used in this book is open source and freely
+available (in both senses).

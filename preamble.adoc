@@ -1,0 +1,11 @@
+= The Python Lab Book: {topic}
+Martin Fitzpatrick <martin.fitzpatrick@gmail.com>
+:doctype: book
+:source-highlighter: coderay
+:listing-caption: Listing
+//:pdf-page-size: A4
+:icons: font
+
+Quick, reproducible science in Python
+
+:toc:
