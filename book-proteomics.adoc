@@ -1,7 +1,7 @@
 :topic:  Proteomics
 :topic-lc: proteomics
 :topic-slug: proteomics
-:toc:
+:toc: left
 
 include::preamble.adoc[]
 
