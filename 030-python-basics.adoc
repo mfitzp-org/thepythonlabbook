@@ -5,14 +5,17 @@ Python, right? No, not exactly. The goal here is to teach you how to use
 Python for your science, and no more. However, there are still some common
 concepts that it is useful to understand.
 
-This chapter presumes no previous knowledge of Python or programming. It will
-introduce common concepts including variables, functions, iteration, comprehension
+This chapter assumes some passing familiarity with Python or programming and should
+serve as a reminder or refresher. It will  introduce common concepts including variables, functions, iteration, comprehension
 and classes. If that sounds deathly boring, it is because it is. But it will
 be over quickly, and then you can get on to making awesome science.
 
-TIP: The information here is more than enough to follow this book and do some
-great science. If you find yourself wanting to learn more about these things in
-depth you can take a look at our [recommended resources].
+TIP: If you don't have previous experience with Python, or you want to
+learn more about the things covered in this chapter you can take a look
+at our [recommended resources].
+
+This entire book is based on (and frequently updated to) the current latest
+version of Python which as of writing is Python 3.4.
 
 === Mathematical operators
 
@@ -177,14 +180,31 @@ away any fractional part of the number.
 
 ==== floats `float`
 
-A _float_ is a floating-point representation of a number.
+A _float_ is a floating-point representation of a number. The name _floating
+point_ refers to the fact that the decimal point position is not fixed, but
+'floats'. The position of the decimal point gives a trade-off between the
+range of supported values and the precision of those values.
+This can be compared to _decimal_ types, where the position of the decimal
+point is fixed, and therefore precision is exactly known.
 
-
-`float` is not used with financial data for this reason. Over time this small
+TIP: `float` is not used with financial data for this reason. Over time this small
 error will accumulate into missing fractions of money — and _nobody_ likes losing money.
-Depending on your applications you can normally ignore this: the precision is
-simply _good enough_ to not cause problems at the scale you're working.
 
+In Python floats are sufficiently large that the effects of these tradeoffs are
+not likely to affect your results. But there are gotchas to watch out for,
+particularly when trying to compare floating point values:
+
+[source,python]
+----
+>>> 0.1 + 0.2
+0.3000000004
+
+>>> 0.1+0.2 == 0.3
+False
+----
+
+Here the inaccuracy of the representation results in a counterintuitive result
+for the comparison. The simple solution to this is: _don't test floats for equality!_
 
 ==== character strings `str`
 
@@ -197,7 +217,7 @@ right-to-left text and even emoji (👍).
 In practise you can just think `str` is ‘text’ and leave it at that.
 
 TIP: In earlier versions of Python `str` was _not_ unicode. However you could
-define unicode string literals using `u'my unicode string'` syntax.
+define unicode string literals using the `u` prefix: `u'my unicode string'`.
 
 ==== byte strings `byte`
 
@@ -205,7 +225,12 @@ Byte strings are _simple strings_ that do not support unicode. Instead they are
 based on the ASCII standard allowing for 256 (or one _byte_ worth of) characters.
 These are now most commonly used for network protocols where unicode
 is not supported. You probably won't make much use of these, but they are
-worth knowing about.
+worth knowing about. You can define byte strings using a `b` prefix, e.g.
+
+[source,python]
+----
+b'my byte string'
+----
 
 ==== tuples `tuple`
 ==== lists `list`
@@ -268,7 +293,8 @@ You can even store dictionaries as values in dictionaries.
 ----
 
 TIP: As a general rule you don't want to mix simple and complex types in
-your dictionary values.
+your dictionary values. In fact, you usually want to keep all values
+of the same type.
 
 ===== Default values with `defaultdict`
 
@@ -711,7 +737,7 @@ If the implementation is easy to explain, it may be a good idea. +
 Namespaces are one honking great idea -- let's do more of those! +
 ____
 
-You don't need to learn it but you should try and _remember_ it. How very Zen.
+Which, ironically, is an overly long way of saying "simplicity is best".
 
 
 ==== Needs more PEP (specifically 8)
@@ -731,22 +757,22 @@ code obvious others can check your logic for mistakes.
 def my_magic_function(x):
     """
 
+    """
 -----
 
 “But, I'm not going to share my code” you say?
 
 What if you come back to this block of code next week, next month, next year?
 If you're over 30 you probably have trouble remembering what
-you did yesterday. Save yourself a headache, comment as you go.
+you did yesterday. Save yourself from future headaches, comment as you go.
 
-TIP: A good rule of thumb is to comment your code
-clearly enough that its meaning will be clear to you 3 months later, on
+TIP: Comment your code clearly enough that its meaning will be clear to you 3 months later, on
 a bad day, with no coffee.
 
 
-==== Loose typing
+==== Dynamic typing
 
-Python is a _loosely typed_ language which in English means that
+Python is a _dynamically typed_ language which in English means that
 you can assign any type of value to any variable at any time. This
 means that you can do things like this:
 
@@ -768,17 +794,16 @@ to the club. In many languages you would need to define the `type` of `a`
 when creating it. If we defined it as `int` and then tried to assign a `str` to
 we would get an error.
 
-This _loose typing_ gives you a lot of freedom in your code: you
+This _dynamic typing_ gives you a lot of freedom in your code: you
 don't need to think about how you are going to use a variable before you
 create it, you can store special values such as `None` in any variable and
 you can re-use temporary variables without making sure they are of the correct type.
-
 
 But, just because you _can_ do something doesn't mean you _should_. So think
 carefully about how you re-use variables and keep them descriptive. It also
 leaves you open to _type errors_ where you try to do something with
 a variable thinking it's one type and it's another. Thankfully there are
-is a neat way to deal with this in Python: duck typing.
+ways to deal with this.
 
 ==== Duck typing
 
@@ -970,7 +995,7 @@ also leads us nicely into the next section.
 ==== Ask for forgiveness, not permission
 
 WARNING: This is a programming principle, not life advice.
-Don't start slapping people in the face and then blaming it on this book.
+
 
 
 ==== Monty Python

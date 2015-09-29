@@ -18,4 +18,5 @@ each package and re-installing it again.
 
 WARNING: Restart Python after each change (or restart your
 kernel if in Spyder or IPython). This is the programming
-equivalent of turning it on and off again.
+equivalent of turning it on and off again. Congratulations, you're
+now a tech support professional.
