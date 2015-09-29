@@ -1,3 +1,4 @@
+:toc:
 
 include::./{topic-slug}/000-foreword.adoc[]
 
