@@ -1,6 +1,7 @@
 :topic:  Metabolomics
 :topic-lc: metabolomics
 :topic-slug: metabolomics
+:toc:
 
 include::preamble.adoc[]
 
