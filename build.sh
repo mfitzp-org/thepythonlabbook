@@ -13,7 +13,7 @@ asciidoctor -b pdf -o build/metabolomics.pdf metabolomics.adoc
 asciidoctor -b pdf -o build/the-python-lab-book.pdf complete.adoc
 
 # Copy the images into location
-cp -r ./img ./build/img
+cp -r ./img/* ./build/img
 
-cp -r ./covers ./build/img
-cp -r ./www ./build
+cp -r ./covers/* ./build/img
+cp -r ./www/* ./build
