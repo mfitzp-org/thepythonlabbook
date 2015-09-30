@@ -1,9 +1,6 @@
-== Introduction to Metabolomics
+== Metabolomics
 
-
-
-
-Metabolomics is a systematic approach to the study of chemical processes
+Metabolomics is a systems approach to the study of chemical processes
 involving metabolites within a biological context. In the same family of
 genomics, transcriptomics and proteomics, it looks to the downstream metabolites
 that result from these genetic and enzymatic interactions. Metabolic regulation

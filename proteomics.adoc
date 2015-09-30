@@ -1,0 +1,18 @@
+= The Python Lab Book: Proteomics
+Martin Fitzpatrick <martin.fitzpatrick@gmail.com>
+:topic:  Proteomics
+:topic-lc: proteomics
+:topic-slug: proteomics
+include::./common/preamble.adoc[]
+
+include::./common/000-099.adoc[]
+
+include::./{topic-slug}/100-899.adoc[]
+
+include::./common/900-999.adoc[]
+
+include::./common/bibliography.adoc[]
+
+include::./{topic-slug}/bibliography.adoc[]
+
+include::./common/postamble.adoc[]
