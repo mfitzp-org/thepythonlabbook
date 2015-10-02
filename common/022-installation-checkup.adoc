@@ -2,12 +2,14 @@
 === Check your setup
 
 Now you have all packages installed and set up, it is worth
-taking a moment to test the installation with a few quick
-examples. Run the following snippets of code in your chosen
-environment and check whether they:
+taking a moment to test the installation. To make this as easy as possible
+I've provided a script you can download to do this for you. The script
+will run a series of tests to confirm whether packages you need for this book
+(and others in the series) are correctly installed and functional.
 
-a. work
-b. produce the same output
+
+FIXME - add remote script here
+
 
 If you find something is not quite right, take a step back
 and double check you have installed everything correctly. This

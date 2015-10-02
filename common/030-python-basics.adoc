@@ -233,6 +233,9 @@ b'my byte string'
 ----
 
 ==== tuples `tuple`
+
+
+
 ==== lists `list`
 ==== sets `set`
 ==== dictionaries `dict`
@@ -507,7 +510,7 @@ False
 ----
 
 TIP: The order of the `>` or `<` and the `=` is important. If you write `=>` you will
-get an error. Remember it as ``greater or equal'' and ``less than, equal'' you'll
+get an error. Remember it as “greater or equal” and “less than or equal” you'll
 get it in the right order.
 
 
@@ -995,17 +998,3 @@ also leads us nicely into the next section.
 ==== Ask for forgiveness, not permission
 
 WARNING: This is a programming principle, not life advice.
-
-
-
-==== Monty Python
-
-Despite what the logo may suggest the Python programming language has nothing
-whatsoever to do with snakes. It is named after the British comedy series
-“Monty Python and the Flying Circus” by the group of the same name. Which
-incidentally also has nothing to do with snakes.
-
-This links shows up various places in the _Python_ world. For example, the
-official Python package repository _PyPi_ is also known by the name
-_Cheeseshop_ after [this sketch]. You don't need to watch Monty Python to
-use the language but you might enjoy it.
