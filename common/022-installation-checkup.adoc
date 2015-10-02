@@ -18,7 +18,6 @@ will save you much confusion later on!
 TIP: If you can't figure out what is wrong, try uninstalling
 each package and re-installing it again.
 
-WARNING: Restart Python after each change (or restart your
-kernel if in Spyder or IPython). This is the programming
-equivalent of turning it on and off again. Congratulations, you're
-now a tech support professional.
+WARNING: Restart the Jupyter kernel (Kernel->Restart) after each change.
+This is the programming equivalent of turning it on and off again.
+Congratulations, you're now a tech support professional.

@@ -3,8 +3,6 @@ include::../{topic-slug}/000-foreword.adoc[]
 
 include::010-introduction.adoc[]
 
-include::../{topic-slug}/010-introduction.adoc[]
-
 include::020-installation.adoc[]
 
 include::021-installation-packages.adoc[]

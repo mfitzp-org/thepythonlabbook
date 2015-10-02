@@ -1,3 +1,33 @@
 == Foreword
 
-Metabolomics is.
+Metabolomics is a systematic approach to the study of chemical processes
+involving metabolites within a biological context. In the same family of
+genomics, transcriptomics and proteomics, it looks to the downstream metabolites
+that result from these genetic and enzymatic interactions. Metabolic regulation
+is fundamental to the function of a living cell, and the study of metabolic
+profiles offers a novel window into the system. Metabolomics may be broadly
+separated into two streams: that concerned with the identification of downstream
+biomarkers in biological fluids, and that concerned with the study of the
+metabolic processes that produce them. In the former, analysis of easily
+available biofluids such as blood plasma, or urine has demonstrated utility in
+finding biomarkers for a number of diseases including ulcerative colitis,
+rheumatoid arthritis and multiple sclerosis (1–3), as reviewed by our group (4).
+Biomarkers are typically reaction by-products and metabolism en route from the
+original site of metabolism to the collection site limits mechanistic
+understanding that can be derived. For example, any urinary markers of
+inflammation are subject to renal metabolism prior to collection. In order to
+attempt to limit confounding effects, analysis may also be performed from a
+single in vivo compartment, for example cerebrospinal or synovial fluid
+(1–3,5,6). Still more control, at the expense of biological accuracy, can be
+achieved through the use of closed in vitro systems. In all cases biological or
+culture fluids describe cellular waste by-products of metabolism, while tissue
+or cell extracts show intracellular metabolic processes and regulation.
+
+The identification of biomarkers is the key goal of clinical metabolomic
+studies. While many biological sources may be useable for analysis, there is a
+preference for those that are accessible with minimal discomfort for patients.
+In practise this means urine, plasma or serum [ref]. The former has the
+advantage of near limitless supply, yet with the caveat of high variability —
+although methods exist to compensate for this. Studies have used other material
+however, ranging from vitreous fluid (7) to faecal extracts (Bezabeh et al.
+2009).
