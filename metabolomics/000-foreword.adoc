@@ -1,33 +1,33 @@
 == Foreword
 
-Metabolomics is a systematic approach to the study of chemical processes
-involving metabolites within a biological context. In the same family of
-genomics, transcriptomics and proteomics, it looks to the downstream metabolites
-that result from these genetic and enzymatic interactions. Metabolic regulation
-is fundamental to the function of a living cell, and the study of metabolic
-profiles offers a novel window into the system. Metabolomics may be broadly
-separated into two streams: that concerned with the identification of downstream
-biomarkers in biological fluids, and that concerned with the study of the
-metabolic processes that produce them. In the former, analysis of easily
-available biofluids such as blood plasma, or urine has demonstrated utility in
-finding biomarkers for a number of diseases including ulcerative colitis,
-rheumatoid arthritis and multiple sclerosis (1–3), as reviewed by our group (4).
-Biomarkers are typically reaction by-products and metabolism en route from the
-original site of metabolism to the collection site limits mechanistic
-understanding that can be derived. For example, any urinary markers of
-inflammation are subject to renal metabolism prior to collection. In order to
-attempt to limit confounding effects, analysis may also be performed from a
-single in vivo compartment, for example cerebrospinal or synovial fluid
-(1–3,5,6). Still more control, at the expense of biological accuracy, can be
-achieved through the use of closed in vitro systems. In all cases biological or
-culture fluids describe cellular waste by-products of metabolism, while tissue
-or cell extracts show intracellular metabolic processes and regulation.
+Metabolomics is a systemic approach to the study of small molecular weight
+_metabolites_ that result from cellular processes, collectively termed
+_metabolism_. In common with other ‘—omics’ methods — including genomics,
+transcriptomics and proteomics — metabolomics offers a global, complex, view
+into the living systems.
 
-The identification of biomarkers is the key goal of clinical metabolomic
-studies. While many biological sources may be useable for analysis, there is a
-preference for those that are accessible with minimal discomfort for patients.
-In practise this means urine, plasma or serum [ref]. The former has the
-advantage of near limitless supply, yet with the caveat of high variability —
-although methods exist to compensate for this. Studies have used other material
-however, ranging from vitreous fluid (7) to faecal extracts (Bezabeh et al.
-2009).
+Metabolomics is applied both in _targeted_ and _untargeted_ studies.
+
+In _targeted_ metabolomics, known pathways, reactions and metabolites are
+monitored directly to look for cellular adaptation or dysregulation.
+These techniques have been applied most  successfully in cancer, but also
+in immunology and other cellular sciences.
+
+In contrast clinical metabolomics typicall uses _untargeted_ approaches to search for
+predictive biomarkers in patient biofluids including urine, plasma or serum.
+This approach has met with some success in the analysis of a number of diseases,
+including inflammatory diseases such as ulcerative colitis, rheumatoid
+arthritis and multiple sclerosis [38]. Biomarkers are typically reaction
+by-products and metabolism en route from the original site of metabolism
+to the collection site limits interpretation. For example, any urinary markers of
+inflammation are subject to renal metabolism prior to collection.
+
+Data acquisition for metabolomics commonly makes use of NMR or mass spectrometry
+based methods, and both will be covered here. Handling of these data, particularly
+for quantification and identification, is very different. However, once past this
+stage the further handling is largely identical.
+
+Both approaches share common steps during data processing, yet differ quite
+considerably at the analysis and evaluation stages. This chapter will cover
+both, leading from raw data handling through processing and quantification, to
+interpretation through statistical modelling and pathway visualisation.

@@ -1,33 +1,3 @@
 == Metabolomics
 
-Metabolomics is a systemic approach to the study of small molecular weight
-_metabolites_ that result from cellular processes, collectively termed
-_metabolism_. In common with other ‘—omics’ methods — including genomics,
-transcriptomics and proteomics — metabolomics offers a global, complex, view
-into the living systems.
-
-Metabolomics is applied both in _targeted_ and _untargeted_ studies.
-
-In _targeted_ metabolomics, known pathways, reactions and metabolites are
-monitored directly to look for cellular adaptation or dysregulation.
-These techniques have been applied most  successfully in cancer, but also
-in immunology and other cellular sciences.
-
-In contrast clinical metabolomics typicall uses _untargeted_ approaches to search for
-predictive biomarkers in patient biofluids including urine, plasma or serum.
-This approach has met with some success in the analysis of a number of diseases,
-including inflammatory diseases such as ulcerative colitis, rheumatoid
-arthritis and multiple sclerosis [38]. Biomarkers are typically reaction
-by-products and metabolism en route from the original site of metabolism
-to the collection site limits interpretation. For example, any urinary markers of
-inflammation are subject to renal metabolism prior to collection.
-
-Data acquisition for metabolomics commonly makes use of NMR or mass spectrometry
-based methods, and both will be covered here. Handling of these data, particularly
-for quantification and identification, is very different. However, once past this
-stage the further handling is largely identical.
-
-Both approaches share common steps during data processing, yet differ quite
-considerably at the analysis and evaluation stages. This chapter will cover
-both, leading from raw data handling through processing and quantification, to
-interpretation through statistical modelling and pathway visualisation.
+Metabolomics chapter.
