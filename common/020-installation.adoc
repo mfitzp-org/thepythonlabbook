@@ -1,9 +1,10 @@
-=== Installing Python
+== Installation
 
-While this book is based on Python `3.4` many examples will
-also work with version `2.7`. However, if you are starting out with
-Python you should use the latest version available — this is the future!
+=== Installing Python 3.x
 
+This book is based on the latest version of Python (currently `3.4`). While many
+examples will also work with version `2.7`, if you are starting out with Python
+using the latest version will save you from upgrade problems in the future.
 
 ==== Windows
 
@@ -21,9 +22,6 @@ _package manager_ for MacOS X that manages installation of system software
 packages in a non-destructive way. You can even install multiple versions of
 Python if you wish. Helpfully, it also includes a number of pre-made add on
 packages for Python that are sometimes hard to install.
-
-.Homebrew: The missing package manager for OS X
-image::./img/020-installation-homebrew.png[]
 
 To install Homebrew open up a Terminal and enter:
 
@@ -46,35 +44,68 @@ brew install python3
 
 ==== Linux
 
-==== Alternatives
-
-===== Anaconda
 
 
-== Installation
+=== Tools
 
-=== Environments
+To write Python scripts you need nothing more complicated than a standard
+text editor. We'll revisit this in later chapters when we look at packaging
+and releasing our tools. However, for exploratory analysis and development of
+ideas writing scripts can be a little bit cumbersome.
 
-==== Jupyter and the Notebook
+Thankfully there is a nice alternative - the Jupyter notebook interface.
 
-Jupyter
+==== Jupyter Notebook
 
-the Jupyter notebook interface.
+Jupyter notebooks allow you to write Python code from within your web browser,
+using an iterative step-by-step process. You can easily step back and forward
+to run and re-run previous snippets of code, or edit and alter the behaviour.
+Code outputs (text, figures, tables) are automatically displayed in the browser.
 
-Jupyter notebooks enable you to write scripts within a simple web notebook
-environment. It automatically displays code outputs (text, figures, tables)
-and allow interactive re-running of code segments for debugging and
-development. Even better, when you're finished you can save the outputs
-with the notebook - meaning they're there to be viewed when you come
-back to your code.
-
-.The Jupyter notebook management interface
-image::./img/020-installation-jupyter.png[]
+When you're finished you can save the outputs with the notebook - meaning
+they're there to be viewed when you come back to your code, and can be used
+as a rudimentary lab book, storing your processes.
 
 TIP: Jupyter notebooks are also a great way to publish your methods alongside
 your results. If you're interested in seeing what other scientists are
 doing with Jupyter there is a list of reproducible publications available at
 http://bit.ly/1Qlrr3T
 
+To install Jupyter use:
 
-==== Spyder
+[source,bash]
+----
+pip install jupyter
+----
+
+You can now launch the Jupyter web interface using:
+
+[source,bash]
+----
+jupyter notebook
+----
+
+Your default web browser should open up, showing you the Jupyter notebook
+management interface.
+
+.The Jupyter notebook management interface
+image::./img/020-installation-jupyter.png[]
+
+==== Editors and IDEs
+
+If you want to release standalone scripts or package up your software for
+release, at some point you will also need to have access to a text editor.
+You don't need to install any of these yet, but here are a few future
+recommendations depending on your platform:
+
+
+- Windows: Notepad++
+- Mac: TextWrangler
+- Linux: gedit (Gnome) Kate (KDE)
+
+If you start developing more complex software you may find it easier to work
+with an Integrated Development Environment (IDE). These tools provide a
+more comprehensive workspace for software development, with integrated code
+checking, documentation and much more. Examples include:
+
+- PyCharm (Windows, Mac, Linux)
