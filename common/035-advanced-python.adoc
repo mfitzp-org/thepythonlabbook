@@ -153,12 +153,10 @@ Python is a _dynamically typed_ language which in English means that
 you can assign any type of value to any variable at any time. This
 means that you can do things like this:
 
-[source,python,stdout]
+[source,python]
 ----
 a = 5
 ----
-....
-....
 
 [source,python,stdout]
 ----
@@ -166,6 +164,7 @@ a = 'hello'
 a
 ----
 ....
+'hello'
 ....
 
 [source,python,stdout]
@@ -174,6 +173,7 @@ a = 1.2
 a
 ----
 ....
+1.2
 ....
 
 If you're looking at that and thinking “Well, that makes sense.” welcome
@@ -236,6 +236,7 @@ data = my_awesome_function(data):
 data
 ----
 ....
+
 ....
 
 But then someone who hasn't read the documentation comes along and tries to
@@ -248,6 +249,7 @@ data = my_awesome_function(data):
 data
 ----
 ....
+
 ....
 
 Well, that doesn't work. But the author of the function wants to catch
@@ -282,6 +284,7 @@ my_dict = defaultdict(int)
 type(my_dict) == defaultdict
 ----
 ....
+True
 ....
 
 [source,python,stdout]
@@ -289,6 +292,7 @@ type(my_dict) == defaultdict
 type(my_dict) == dict
 ----
 ....
+False
 ....
 
 We _could_ work around this
@@ -300,6 +304,7 @@ class `dict` or of _any subclass_ of `dict`:
 isinstance(my_dict, dict)
 ----
 ....
+True
 ....
 
 We could implement this in the function as follows:
@@ -381,6 +386,7 @@ data = [1,2,3,4]
 data = my_awesome_function(data):
 ----
 ....
+
 ....
 
 The _duck typing_ principle is a key part of writing _Pythonic_ code. This example
