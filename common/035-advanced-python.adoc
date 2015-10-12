@@ -157,18 +157,24 @@ means that you can do things like this:
 ----
 a = 5
 ----
+....
+....
 
 [source,python,stdout]
 ----
 a = 'hello'
 a
 ----
+....
+....
 
 [source,python,stdout]
 ----
 a = 1.2
 a
 ----
+....
+....
 
 If you're looking at that and thinking “Well, that makes sense.” welcome
 to the club. In many languages you would need to define the `type` of `a`
@@ -229,6 +235,8 @@ data = { 'a':1, 'b':2, 'c':3 }
 data = my_awesome_function(data):
 data
 ----
+....
+....
 
 But then someone who hasn't read the documentation comes along and tries to
 call the function with a `list`:
@@ -239,6 +247,8 @@ data = [1,2,3,4]
 data = my_awesome_function(data):
 data
 ----
+....
+....
 
 Well, that doesn't work. But the author of the function wants to catch
 this error more elegantly — perhaps raising a helpful exception to
@@ -271,11 +281,15 @@ from collections import defaultdict
 my_dict = defaultdict(int)
 type(my_dict) == defaultdict
 ----
+....
+....
 
 [source,python,stdout]
 ----
 type(my_dict) == dict
 ----
+....
+....
 
 We _could_ work around this
 by using `isinstance()`. This returns true if the `dict_in` object is of the
@@ -285,6 +299,8 @@ class `dict` or of _any subclass_ of `dict`:
 ----
 isinstance(my_dict, dict)
 ----
+....
+....
 
 We could implement this in the function as follows:
 
@@ -363,9 +379,9 @@ we raise a more descriptive exception for the user.
 ----
 data = [1,2,3,4]
 data = my_awesome_function(data):
-data
-[NICE ERROR]
 ----
+....
+....
 
 The _duck typing_ principle is a key part of writing _Pythonic_ code. This example
 also leads us nicely into the next section.

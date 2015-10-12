@@ -32,26 +32,36 @@ power x^n `x**n`. There should be no surprises here:
 ----
 1 + 5
 ----
+....
+....
 
 [source,python,stdout]
 ----
 5 - 7
 ----
+....
+....
 
 [source,python,stdout]
 ----
 8 / 2
 ----
+....
+....
 
 [source,python,stdout]
 ----
 8 / 3
 ----
+....
+....
 
 [source,python,stdout]
 ----
 2 ** 8
 ----
+....
+....
 
 WARNING: If you're using Python2.7 you'll notice that `/` will give you a different
 results: +
@@ -77,21 +87,29 @@ number, throwing away the remainder. _Modulus_ gives you that remainder.
 ----
 6 // 3
 ----
+....
+....
 
 [source,python,stdout]
 ----
 6 % 3
 ----
+....
+....
 
 [source,python,stdout]
 ----
 7 // 3
 ----
+....
+....
 
 [source,python,stdout]
 ----
 7 % 3
 ----
+....
+....
 
 These operators become particularly useful when you're trying to do something to every
 __n__th value or you want to split large numbers into upper and lower parts.
@@ -101,11 +119,15 @@ __n__th value or you want to split large numbers into upper and lower parts.
 ----
 123456 // 1000
 ----
+....
+....
 
 [source,python,stdout]
 ----
 123456 % 1000
 ----
+....
+....
 
 
 === Comparisons
@@ -135,6 +157,8 @@ x = 'a' * 20
 y = 'a' * 20
 x is y
 ----
+....
+....
 
 [source,python,stdout]
 ----
@@ -142,6 +166,8 @@ x = 'a' * 21
 y = 'a' * 21
 x is y
 ----
+....
+....
 
 The same principal applies to numbers less than or equal to 256 (not coincidentally
 the size of one `byte`):
@@ -152,6 +178,8 @@ a = 256
 b = 256
 a is b
 ----
+....
+....
 
 [source,python,stdout]
 ----
@@ -159,6 +187,8 @@ a = 257
 b = 257
 a is b
 ----
+....
+....
 
 But, if you assign the two values at the same time they become _the same_ again.
 
@@ -167,6 +197,8 @@ But, if you assign the two values at the same time they become _the same_ again.
 a = 257; b = 257
 a is b
 ----
+....
+....
 
 If this seems like weird voodoo magic don't worry. This who issue is neatly
 sidestepped by using `is` correctly. Only use `is` when you want to test that
@@ -200,6 +232,8 @@ away any fractional part of the number.
 ----
 int(4.3)
 ----
+....
+....
 
 ==== floats `float`
 
@@ -221,11 +255,15 @@ particularly when trying to compare floating point values:
 ----
 0.1 + 0.2
 ----
+....
+....
 
 [source,python,stdout]
 ----
-0.1+0.2 == 0.3
+0.1 + 0.2 == 0.3
 ----
+....
+....
 
 Here the inaccuracy of the representation results in a counterintuitive result
 for the comparison. The simple solution to this is: _don't test floats for equality!_
@@ -271,7 +309,7 @@ future. Keys must be unique, but values may be the same.
 
 You can define a dictionary using the `dict` type as follows:
 
-[source,python,stdout]
+[source,python]
 ----
 my_dict = dict()
 my_dict['a'] = 'hello'
@@ -283,6 +321,8 @@ You can read the values out by key as follows:
 ----
 my_dict['a']
 ----
+....
+....
 
 You can also define dictionaries using the `{'key':value}` literal syntax:
 
@@ -291,6 +331,8 @@ You can also define dictionaries using the `{'key':value}` literal syntax:
 my_dict = {'a':'hello', 'b':'goodbye'}
 my_dict['b']
 ----
+....
+....
 
 ===== Storing multiple values under a single key
 
@@ -303,12 +345,15 @@ my_dict = dict()
 my_dict['a'] = [1,2,3,4]
 my_dict
 ----
+....
+....
 
 [source,python,stdout]
 ----
 my_dict['a']
-[1, 2, 3, 4]
 ----
+....
+....
 
 You can even store dictionaries as values in dictionaries.
 
@@ -318,6 +363,8 @@ my_dict = dict()
 my_dict['c'] = {'d': 'whatever', 'e': 'you', 'f': 'like'}
 my_dict
 ----
+....
+....
 
 TIP: As a general rule you don't want to mix simple and complex types in
 your dictionary values. In fact, you usually want to keep all values
@@ -352,31 +399,43 @@ values can be used:
 ----
 1 is 1
 ----
+....
+....
 
 [source,python,stdout]
 ----
 True == True
 ----
+....
+....
 
 [source,python,stdout]
 ----
 True == False
 ----
+....
+....
 
 [source,python,stdout]
 ----
 (1 == 1) == True
 ----
+....
+....
 
 [source,python,stdout]
 ----
 (1 == 2) == True
 ----
+....
+....
 
 [source,python,stdout]
 ----
 (1 == 2) == False
 ----
+....
+....
 
 In _NumPy_ `True` and `False` values are also commonly used
 for _masking_ — or _selecting_ — values from arrays. This will
@@ -410,39 +469,53 @@ to understand what is going on:
 ----
 None == None
 ----
+....
+....
 
 [source,python,stdout]
 ----
 None > None
 ----
+....
+....
 
 .`None` is not equal to _anything_ else
 [source,python,stderr]
 ----
 1 == None
 ----
+....
+....
 
 [source,python,stdout]
 ----
 'hello' == None
 ----
+....
+....
 
 .All things that are `None` are equal
-[source, python,stdout]
+[source,python,stdout]
 ----
 a = None
 b = None
 ----
+....
+....
 
 [source,python,stdout]
 ----
 a == None
 ----
+....
+....
 
 [source,python,stdout]
 ----
 a == b
 ----
+....
+....
 
 .All things that are `None` are the same
 [source,python,stdout]
@@ -451,12 +524,15 @@ a = None
 b = None
 a is None
 ----
-True
+....
+....
 
 [source,python,stdout]
 ----
 a is b
 ----
+....
+....
 
 The common use for `None` is as a representation of a non-existent value. For the
 sake of your sanity it's best to stick with this approach.
@@ -492,26 +568,34 @@ To test for equality use the double-equals `==` sign.
 ----
 1 == 2
 ----
+....
+....
 
 [source,python,stdout]
 ----
 1 == 1
 ----
+....
+....
 
 WARNING: A single `=` is
 used to assign a value to a variable. Mixing these up is a common source of
 bugs, but Python will usually tell you when you do it.
 
-[source,python,stdout]
+[source,python,stderr]
 ----
 1 = 1
 ----
+....
+....
 
-[source,pythons,stdout]
+[source,pythons,stderr]
 ----
 if a = 1:
    print("OK")
 ----
+....
+....
 
 You can also test if something is greater `>`, less than `<`,
 greater or equal `>=` and less than or equal `<=` to something else.
@@ -521,41 +605,57 @@ greater or equal `>=` and less than or equal `<=` to something else.
 ----
 5 > 2
 ----
+....
+....
 
 [source,python,stdout]
 ----
 2 > 2
 ----
+....
+....
 
 [source,python,stdout]
 ----
 2 >= 2
 ----
+....
+....
 
 [source,python,stdout]
 ----
 5 >= 6
 ----
+....
+....
 
 [source,python,stdout]
 ----
 6 <= 6
 ----
+....
+....
 
 [source,python,stdout]
 ----
 5 <= 6
 ----
+....
+....
 
 [source,python,stdout]
 ----
 2 < 6
 ----
+....
+....
 
 [source,python,stdout]
 ----
 2 < 2
 ----
+....
+....
 
 TIP: The order of the `>` or `<` and the `=` is important. If you write `=>` you will
 get an error. Remember it as “greater or equal” and “less than or equal” you'll
@@ -608,7 +708,7 @@ A special case of this that you might find yourself using is the _infinite loop 
 Here we set `True` as the loop conditional which as we already know _always equals_ `True`.
 The loop will continue until `break` is reached and the loop exits.
 
-[source,python]
+[source,python,stdout]
 ----
 n = 0
 
@@ -616,7 +716,10 @@ while True:
     n += 1
     if n > 100:
         break
+n
 ----
+....
+....
 
 This construct can be useful when waiting for another task (or a remote API) to
 complete. But in that case you will want to add a wait into the loop to avoid
