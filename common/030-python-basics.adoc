@@ -28,22 +28,29 @@ calculations literally into the Python interpreter.
 The operators available are: addition `a+b`, subtraction `a-b`, division `a/b`,
 power x^n `x**n`. There should be no surprises here:
 
-[source,python]
+[source,python,stdout]
 ----
->>> 1 + 5
-6
+1 + 5
+----
 
->>> 5 - 7
--2
+[source,python,stdout]
+----
+5 - 7
+----
 
->>> 8 / 2
-4.0
+[source,python,stdout]
+----
+8 / 2
+----
 
->>> 8 / 3
-2.6666666666666665
+[source,python,stdout]
+----
+8 / 3
+----
 
->>> 2 ** 8
-256
+[source,python,stdout]
+----
+2 ** 8
 ----
 
 WARNING: If you're using Python2.7 you'll notice that `/` will give you a different
@@ -66,31 +73,38 @@ are modulus `a%b` and integer division `a//b`. These operators are related in
 a useful way. _Integer division_ performs division but _always_ returns a whole
 number, throwing away the remainder. _Modulus_ gives you that remainder.
 
-[source,python]
+[source,python,stdout]
 ----
->>> 6 // 3
-2
+6 // 3
+----
 
->>> 6 % 3
-0
+[source,python,stdout]
+----
+6 % 3
+----
 
->>> 7 // 3
-2
+[source,python,stdout]
+----
+7 // 3
+----
 
->>> 7 % 3
-1
+[source,python,stdout]
+----
+7 % 3
 ----
 
 These operators become particularly useful when you're trying to do something to every
 __n__th value or you want to split large numbers into upper and lower parts.
 
-[source,python]
-----
->>> 123456 // 1000
-123
 
->>> 123456 % 1000
-456
+[source,python,stdout]
+----
+123456 // 1000
+----
+
+[source,python,stdout]
+----
+123456 % 1000
 ----
 
 
@@ -114,34 +128,45 @@ or accidentally — by incorrect use of `is`. For example, Python stores `str` o
 This means that two identical `str` of 20 chacters or less are both _equal_ and
 _the same_, while identical longer strings are only _equal_.
 
-    x = 'a' * 20
-    y = 'a' * 20
-    x is y
-    True
 
-    x = 'a' * 21
-    y = 'a' * 21
-    x is y
-    False
+[source,python,stdout]
+----
+x = 'a' * 20
+y = 'a' * 20
+x is y
+----
+
+[source,python,stdout]
+----
+x = 'a' * 21
+y = 'a' * 21
+x is y
+----
 
 The same principal applies to numbers less than or equal to 256 (not coincidentally
 the size of one `byte`):
 
-    a = 256
-    b = 256
-    a is b
-    True
+[source,python,stdout]
+----
+a = 256
+b = 256
+a is b
+----
 
-    a = 257
-    b = 257
-    a is b
-    False
+[source,python,stdout]
+----
+a = 257
+b = 257
+a is b
+----
 
 But, if you assign the two values at the same time they become _the same_ again.
 
-    a = 257; b = 257
-    a is b
-    True
+[source,python,stdout]
+----
+a = 257; b = 257
+a is b
+----
 
 If this seems like weird voodoo magic don't worry. This who issue is neatly
 sidestepped by using `is` correctly. Only use `is` when you want to test that
@@ -171,11 +196,9 @@ than you might think. Is `4.0` an integer? Mathematically yes, computationally n
 You can use the `int` type to cast `float` values to an `int`. This will throw
 away any fractional part of the number.
 
-[source,python]
+[source,python,stdout]
 ----
->>> int(4.3)
-4
-
+int(4.3)
 ----
 
 ==== floats `float`
@@ -194,13 +217,14 @@ In Python floats are sufficiently large that the effects of these tradeoffs are
 not likely to affect your results. But there are gotchas to watch out for,
 particularly when trying to compare floating point values:
 
-[source,python]
+[source,python,stdout]
 ----
->>> 0.1 + 0.2
-0.3000000004
+0.1 + 0.2
+----
 
->>> 0.1+0.2 == 0.3
-False
+[source,python,stdout]
+----
+0.1+0.2 == 0.3
 ----
 
 Here the inaccuracy of the representation results in a counterintuitive result
@@ -234,6 +258,7 @@ b'my byte string'
 
 ==== tuples `tuple`
 
+Tuples are _immutable_, that is they cannot be
 
 
 ==== lists `list`
@@ -246,27 +271,25 @@ future. Keys must be unique, but values may be the same.
 
 You can define a dictionary using the `dict` type as follows:
 
-[source,python]
+[source,python,stdout]
 ----
->>> my_dict = dict()
->>> my_dict['a'] = 'hello'
+my_dict = dict()
+my_dict['a'] = 'hello'
 ----
 
 You can read the values out by key as follows:
 
-[source,python]
+[source,python,stdout]
 ----
->>> my_dict['a']
-'hello'
+my_dict['a']
 ----
 
 You can also define dictionaries using the `{'key':value}` literal syntax:
 
-[source,python]
+[source,python,stdout]
 ----
->>> my_dict = {'a':'hello', 'b':'goodbye'}
->>> my_dict['b']
-'goodbye'
+my_dict = {'a':'hello', 'b':'goodbye'}
+my_dict['b']
 ----
 
 ===== Storing multiple values under a single key
@@ -274,25 +297,26 @@ You can also define dictionaries using the `{'key':value}` literal syntax:
 It is possible to store multiple values by using other Python types as values. For
 example you could store a list of values under a single key.
 
-[source,python]
+[source,python,stdout]
 ----
->>> my_dict = dict()
->>> my_dict['a'] = [1,2,3,4]
->>> my_dict
-{'a': [1, 2, 3, 4]}
+my_dict = dict()
+my_dict['a'] = [1,2,3,4]
+my_dict
+----
 
->>> my_dict['a']
+[source,python,stdout]
+----
+my_dict['a']
 [1, 2, 3, 4]
 ----
 
 You can even store dictionaries as values in dictionaries.
 
-[source,python]
+[source,python,stdout]
 ----
->>> my_dict = dict()
->>> my_dict['c'] = {'d': 'whatever', 'e': 'you', 'f': 'like'}
->>> my_dict
-{'c': {'e': 'you', 'd': 'whatever', 'f': 'like'}}
+my_dict = dict()
+my_dict['c'] = {'d': 'whatever', 'e': 'you', 'f': 'like'}
+my_dict
 ----
 
 TIP: As a general rule you don't want to mix simple and complex types in
@@ -324,25 +348,34 @@ equality.
 The examples below give a quick overview of how `True` and `False`
 values can be used:
 
-[source,python]
+[source,python,stdout]
 ----
->>> 1 is 1
-True
+1 is 1
+----
 
->>> True == True
-True
+[source,python,stdout]
+----
+True == True
+----
 
->>> True == False
-False
+[source,python,stdout]
+----
+True == False
+----
 
->>> (1 == 1) == True
-True
+[source,python,stdout]
+----
+(1 == 1) == True
+----
 
->>> (1 == 2) == True
-False
+[source,python,stdout]
+----
+(1 == 2) == True
+----
 
->>> (1 == 2) == False
-True
+[source,python,stdout]
+----
+(1 == 2) == False
 ----
 
 In _NumPy_ `True` and `False` values are also commonly used
@@ -373,49 +406,56 @@ If the last two seem a little esoteric don't worry. Look at the examples below
 to understand what is going on:
 
 .`None` is equal to itself
-[source, python]
+[source,python,stdout]
 ----
->>> None == None
-True
+None == None
+----
 
->>> None > None
-False
+[source,python,stdout]
+----
+None > None
 ----
 
 .`None` is not equal to _anything_ else
-[source, python]
+[source,python,stderr]
 ----
->>> 1 == None
-False
+1 == None
+----
 
->>> 'hello' == None
-False
+[source,python,stdout]
+----
+'hello' == None
 ----
 
 .All things that are `None` are equal
-[source, python]
+[source, python,stdout]
 ----
->>> a = None
->>> b = None
+a = None
+b = None
+----
 
->>> a == None
-True
+[source,python,stdout]
+----
+a == None
+----
 
->>> a == b
-True
+[source,python,stdout]
+----
+a == b
 ----
 
 .All things that are `None` are the same
-[source, python]
+[source,python,stdout]
 ----
->>> a = None
->>> b = None
-
->>> a is None
+a = None
+b = None
+a is None
+----
 True
 
->>> a is b
-True
+[source,python,stdout]
+----
+a is b
 ----
 
 The common use for `None` is as a representation of a non-existent value. For the
@@ -448,65 +488,73 @@ There is not much more to say about that.
 
 To test for equality use the double-equals `==` sign.
 
-[source,python]
+[source,python,stdout]
 ----
->>> 1 == 2
-False
+1 == 2
+----
 
->>> 1 == 1
-True
+[source,python,stdout]
+----
+1 == 1
 ----
 
 WARNING: A single `=` is
 used to assign a value to a variable. Mixing these up is a common source of
 bugs, but Python will usually tell you when you do it.
 
-[source,python]
+[source,python,stdout]
 ----
->>> 1 = 1
-----
-----
-SyntaxError: can't assign to literal
+1 = 1
 ----
 
-[source,python]
+[source,pythons,stdout]
 ----
 if a = 1:
    print("OK")
-----
-----
-SyntaxError: invalid syntax
 ----
 
 You can also test if something is greater `>`, less than `<`,
 greater or equal `>=` and less than or equal `<=` to something else.
 
 
-[source,python]
+[source,python,stdout]
 ----
->>> 5 > 2
-True
+5 > 2
+----
 
->>> 2 > 2
-False
+[source,python,stdout]
+----
+2 > 2
+----
 
->>> 2 >= 2
-True
+[source,python,stdout]
+----
+2 >= 2
+----
 
->>> 5 >= 6
-False
+[source,python,stdout]
+----
+5 >= 6
+----
 
->>> 6 <= 6
-True
+[source,python,stdout]
+----
+6 <= 6
+----
 
->>> 5 <= 6
-True
+[source,python,stdout]
+----
+5 <= 6
+----
 
->>> 2 < 6
-True
+[source,python,stdout]
+----
+2 < 6
+----
 
->>> 2 < 2
-False
+[source,python,stdout]
+----
+2 < 2
 ----
 
 TIP: The order of the `>` or `<` and the `=` is important. If you write `=>` you will
@@ -584,78 +632,6 @@ maintenance —
 The solution to this is to use _functions_ to
 
 
-
-
-=== List, Dict Comprehensions
-
-=== Imports and Modules
-
-
-=== Classes
-
-
-=== Exceptions
-
-=== Regular Expressions
-
-=== `lambda` functions
-
-This is a shorthand notation for _really simple_ functions that can be
-encapsulated in a single line. You won't find yourself using them an
-awful lot, but it's a good tool to have in your kit.
-
-The basic syntax for lambdas is:
-
-[source,python]
-fn = lambda <parameters>:<return calculation>
-
-Unlike standard functions a `lambda` has no return statement, instead simply
-returning what was passed. There is no function name, with the `lambda` instead
-assigned to a variable. However, parameters follow the same standard function rules.
-
-[source,python]
-----
->>> add1 = lambda x:x+1
-
->>> add1(1)
-2
-----
-
-[source,python]
-----
->>> makedict = lambda **kwargs:kwargs
-
->>> makedict(hello=1)
-{'hello': 1}
-----
-
-One common use of lambdas is to extract a key from a tuple for sorting. For
-example the following lambda will extract and return element 1 from the supplied
-`list` or `tuple`:
-
-[source,python]
-lambda k: k[1]
-
-We'll see this in action in a later chapter.
-
-
-=== Delays
-
-You can wait for a while using the `sleep` function available from the `time` module.
-It accepts a duration in seconds (as a `float` for fractional seconds) and waits
-the specified time before returned control.
-
-[source,python]
-----
->>> from time import sleep
->>> sleep(3)
-----
-
-=== Input
-
-
-
-
 === Comments
 
 It is often useful to explain _in plain language_ what a piece of
@@ -696,305 +672,4 @@ that tells you something very interesting.
 TIP: Multi-line comments are actually string literals. You can
 use the same syntax to assign multi-line strings to a variable.
 
-
-
-
-=== Philosophy
-
-If you've had experience with other programming languages, or want
-to understand the way Python works in a little more detail, it
-may be worth reading this short section. If you think ignorance is
-bliss feel free to move on — you don't _need_ to know any of this, though it will
-make you a better Python programmer if you do.
-
-==== Pythonic
-
-If you start hanging around Python programmers you'll start hearing the word
-‘Pythonic’ a lot. _Pythonic_ isn't a set standard, more an agreed idea of
-how Python code _should_ look and be written. It emphasises clarity, simplicity
-and the avoidance of tricks. The goal is to write code that _everyone_ can understand.
-
-The principles underlying Python development have
-been summarised in the _Zen of Python_:
-
-[quote, Tim Peters]
-____
-Beautiful is better than ugly. +
-Explicit is better than implicit. +
-Simple is better than complex. +
-Complex is better than complicated. +
-Flat is better than nested. +
-Sparse is better than dense. +
-Readability counts. +
-Special cases aren't special enough to break the rules. +
-Although practicality beats purity. +
-Errors should never pass silently. +
-Unless explicitly silenced. +
-In the face of ambiguity, refuse the temptation to guess. +
-There should be one-- and preferably only one --obvious way to do it. +
-Although that way may not be obvious at first unless you're Dutch. +
-Now is better than never. +
-Although never is often better than right now. +
-If the implementation is hard to explain, it's a bad idea. +
-If the implementation is easy to explain, it may be a good idea. +
-Namespaces are one honking great idea -- let's do more of those! +
-____
-
-Which, ironically, is an overly long way of saying "simplicity is best".
-
-
-==== Needs more PEP (specifically 8)
-
-
-
-
-=== Comments
-
-_Good_ comments are key to _understandable_ code. If you are
-sharing your code with someone else they are _essential_ to
-ensure your aims are clear. By making the purpose of a block of
-code obvious others can check your logic for mistakes.
-
-[source,python]
------
-def my_magic_function(x):
-    """
-
-    """
------
-
-“But, I'm not going to share my code” you say?
-
-What if you come back to this block of code next week, next month, next year?
-If you're over 30 you probably have trouble remembering what
-you did yesterday. Save yourself from future headaches, comment as you go.
-
-TIP: Comment your code clearly enough that its meaning will be clear to you 3 months later, on
-a bad day, with no coffee.
-
-
-==== Dynamic typing
-
-Python is a _dynamically typed_ language which in English means that
-you can assign any type of value to any variable at any time. This
-means that you can do things like this:
-
-[source,python]
-----
->>> a = 5
->>> a
-5
->>> a = 'hello'
->>> a
-'hello'
->>> a = 1.2
->>> a
-1.2
-----
-
-If you're looking at that and thinking “Well, that makes sense.” welcome
-to the club. In many languages you would need to define the `type` of `a`
-when creating it. If we defined it as `int` and then tried to assign a `str` to
-we would get an error.
-
-This _dynamic typing_ gives you a lot of freedom in your code: you
-don't need to think about how you are going to use a variable before you
-create it, you can store special values such as `None` in any variable and
-you can re-use temporary variables without making sure they are of the correct type.
-
-But, just because you _can_ do something doesn't mean you _should_. So think
-carefully about how you re-use variables and keep them descriptive. It also
-leaves you open to _type errors_ where you try to do something with
-a variable thinking it's one type and it's another. Thankfully there are
-ways to deal with this.
-
-==== Duck typing
-
-Another core Python concept that it's worth getting your head around
-is that of _duck typing_.
-
-[quote, James Whitcomb Riley]
-When I see a bird that walks like a duck and swims like a duck and quacks like a duck, I call that bird a duck.
-
-What this means in practise is that rather than worrying about what
-_type_ a variable is, instead consider what _properties_ a variable has. This is
-particularly relevant when we start using custom classes. Say we create a custom
-class that has the functionality of a standard Python dictionary.
-We _should_ be able to substitute our new class in for a dictionary and pass this
-to any function we like.
-
-.This passes the duck test (Photo: Alain Carpenter)
-image::./img/030-python-duck.jpg[]
-
-
-But imagine whoever wrote that function didn't know anything about ducks.
-They start out defining the function like this:
-
-[source,python]
-----
-def my_awesome_function(dict_in):
-    """
-    Accepts a variable dict_in of type `dict` and returns it
-    with keys and values swapped (destructive if duplicate values exist!)
-    """
-    dict_out = dict()
-    for key, value in dict_in.items():
-        dict_out[value] = key
-    return dict_out
-----
-
-Lets try executing this:
-
-[source,python]
-----
->>> data = { 'a':1, 'b':2, 'c':3 }
->>> data = my_awesome_function(data):
->>> data
-{ 1:'a', 2:'b', 3:'c' }
-----
-
-But then someone who hasn't read the documentation comes along and tries to
-call the function with a `list`:
-
-[source,python]
-----
->>> data = [1,2,3,4]
->>> data = my_awesome_function(data):
->>> data
-[ERROR]
-----
-
-Well, that doesn't work. But the author of the function wants to catch
-this error more elegantly — perhaps raising a helpful exception to
-describe the problem. Lets update the function:
-
-[source,python]
-----
-def my_awesome_function(dict_in):
-    """
-    Accepts a variable dict_in of type `dict` and returns it
-    with keys and values swapped (destructive if duplicate values exist!)
-    """
-
-    if type(dict_in) != dict:
-        raise Exception("Please supply a dictionary.")
-
-    dict_out = dict()
-    for key, value in dict_in.items():
-        dict_out[value] = key
-    return dict_out
-----
-
-Great! Right? Not really. While this will certainly solve our `list` failure, it
-only works if `dict_in` is _exactly_ of the type `dict`. If we're using a
-subclassed type such as `defaultdict` this will now fail.
-
-[source,python]
-----
-from collections import defaultdict
-my_dict = defaultdict(int)
-
->>> type(my_dict) == defaultdict
-True
-
->>> type(my_dict) == dict
-False
-----
-
-We _could_ work around this
-by using `isinstance()`. This returns true if the `dict_in` object is of the
-class `dict` or of _any subclass_ of `dict`:
-
-[source,python]
-----
->>> isinstance(my_dict, dict)
-True
-----
-
-We could implement this in the function as follows:
-
-[source,python]
-----
-def my_awesome_function(dict_in):
-    """
-    Accepts a variable dict_in of type `dict` and returns it
-    with keys and values swapped (destructive if duplicate values exist!)
-    """
-
-    if isinstance(dict_in, dict):
-        raise Exception("Please supply a dictionary.")
-
-    dict_out = dict()
-    for key, value in dict_in.items():
-        dict_out[value] = key
-    return dict_out
-----
-
-Sorted? Still no. This code will still fail for any `dict`-like object
-that isn't a subclass of `dict`.
-
-So how can we work around this? This brings
-us back to ducks. In the function we use a single feature of the `dict` type:
-the `.items()` property. If that is the feature we want, that is the feature we should test.
-
-The simplest way to do this is simply call the attribute and catch the `Exception`:
-
-[source,python]
-----
-def my_awesome_function(dict_in):
-    """
-    Accepts a variable dict_in of type `dict` and returns it
-    with keys and values swapped (destructive if duplicate values exist!)
-    """
-
-    try:
-        dict_in.items()
-    except AttributeError:
-        raise Exception("Please supply a dictionary-like type.")
-
-    dict_out = dict()
-    for key, value in dict_in.items():
-        dict_out[value] = key
-    return dict_out
-----
-
-We could even re-structure this to avoid the double-call to the `.items()` property,
-as follows:
-
-[source,python]
-----
-def my_awesome_function(dict_in):
-    """
-    Accepts a variable dict_in of type `dict` and returns it
-    with keys and values swapped (destructive if duplicate values exist!)
-    """
-    dict_out = dict()
-
-    try:
-        for key, value in dict_in.items():
-            dict_out[value] = key
-
-    except AttributeError:
-        raise Exception("Please supply a dictionary-like type.")
-
-    return dict_out
-----
-
-Now we take the dictionary `dict_in` and attempt to _use_ it like a dictionary.
-If we catch an `AttributeError` exception (which here can _only_ come from the `dict_in.items()` )
-we raise a more descriptive exception for the user.
-
-[source,python]
-----
->>> data = [1,2,3,4]
->>> data = my_awesome_function(data):
->>> data
-[NICE ERROR]
-----
-
-The _duck typing_ principle is a key part of writing _Pythonic_ code. This example
-also leads us nicely into the next section.
-
-==== Ask for forgiveness, not permission
-
-WARNING: This is a programming principle, not life advice.
+=== Input and Output

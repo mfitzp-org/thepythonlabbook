@@ -40,24 +40,3 @@ directly from within your scripts.
 pip3 install metabohunter
 
 NOTE: This package was written by the author (Martin Fitzpatrick).
-
-
-
-=== Bayesil `bayesil`
-
-Bayesil is a web service NMR fitting and quantification service this
-time from the Wishart lab. This uses a more advanced Bayesian algorithm to
-match and quantify individual spectra. This takes some time but
-provides more more accurate results.
-
-There is a Python package available to perform a spectra quantification
-directly from within your scripts.
-
-[source,bash]
-----
-pip3 install bayesil
-----
-
-
-
-NOTE: This package was written by the author (Martin Fitzpatrick).

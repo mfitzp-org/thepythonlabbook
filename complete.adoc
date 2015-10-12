@@ -6,9 +6,13 @@ include::./common/preamble.adoc[]
 
 include::./common/000-099.adoc[]
 
+== Metabolomics
+
 include::./metabolomics/100-899.adoc[]
 
+== Proteomics
 include::./proteomics/100-899.adoc[]
+
 
 include::./common/900-999.adoc[]
 

@@ -13,6 +13,8 @@ include::022-installation-checkup.adoc[]
 
 include::030-python-basics.adoc[]
 
+include::035-advanced-python.adoc[]
+
 include::040-working-with-data.adoc[]
 
 include::050-statistics.adoc[]

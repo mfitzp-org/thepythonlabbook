@@ -1,0 +1,375 @@
+== Advanced Python
+
+
+=== List, Dict Comprehensions
+
+
+=== Classes
+
+
+=== Exceptions
+
+=== Regular Expressions
+
+=== `lambda` functions
+
+This is a shorthand notation for _really simple_ functions that can be
+encapsulated in a single line. You won't find yourself using them an
+awful lot, but it's a good tool to have in your kit.
+
+The basic syntax for lambdas is:
+
+[source,python]
+fn = lambda <parameters>:<return calculation>
+
+Unlike standard functions a `lambda` has no return statement, instead simply
+returning what was passed. There is no function name, with the `lambda` instead
+assigned to a variable. However, parameters follow the same standard function rules.
+
+[source,python,stdout]
+----
+add1 = lambda x:x+1
+add1(1)
+----
+
+[source,python,stdout]
+----
+makedict = lambda **kwargs:kwargs
+makedict(hello=1)
+----
+
+One common use of lambdas is to extract a key from a tuple for sorting. For
+example the following lambda will extract and return element 1 from the supplied
+`list` or `tuple`:
+
+[source,pythons]
+----
+lambda k: k[1]
+----
+
+We'll see this in action in a later chapter.
+
+
+=== Delays
+
+You can wait for a while using the `sleep` function available from the `time` module.
+It accepts a duration in seconds (as a `float` for fractional seconds) and waits
+the specified time before returned control.
+
+[source,python]
+----
+from time import sleep
+sleep(3)
+----
+
+
+
+
+=== Imports and Modules
+
+
+
+
+
+
+
+=== Philosophy
+
+If you've had experience with other programming languages, or want
+to understand the way Python works in a little more detail, it
+may be worth reading this short section. If you think ignorance is
+bliss feel free to move on — you don't _need_ to know any of this, though it will
+make you a better Python programmer if you do.
+
+==== Pythonic
+
+If you start hanging around Python programmers you'll start hearing the word
+‘Pythonic’ a lot. _Pythonic_ isn't a set standard, more an agreed idea of
+how Python code _should_ look and be written. It emphasises clarity, simplicity
+and the avoidance of tricks. The goal is to write code that _everyone_ can understand.
+
+The principles underlying Python development have
+been summarised in the _Zen of Python_:
+
+[quote, Tim Peters]
+____
+Beautiful is better than ugly. +
+Explicit is better than implicit. +
+Simple is better than complex. +
+Complex is better than complicated. +
+Flat is better than nested. +
+Sparse is better than dense. +
+Readability counts. +
+Special cases aren't special enough to break the rules. +
+Although practicality beats purity. +
+Errors should never pass silently. +
+Unless explicitly silenced. +
+In the face of ambiguity, refuse the temptation to guess. +
+There should be one-- and preferably only one --obvious way to do it. +
+Although that way may not be obvious at first unless you're Dutch. +
+Now is better than never. +
+Although never is often better than right now. +
+If the implementation is hard to explain, it's a bad idea. +
+If the implementation is easy to explain, it may be a good idea. +
+Namespaces are one honking great idea -- let's do more of those! +
+____
+
+Which, ironically, is an overly long way of saying "simplicity is best".
+
+
+==== Needs more PEP (specifically 8)
+
+
+
+
+=== Comments
+
+_Good_ comments are key to _understandable_ code. If you are
+sharing your code with someone else they are _essential_ to
+ensure your aims are clear. By making the purpose of a block of
+code obvious others can check your logic for mistakes.
+
+[source,python]
+-----
+def my_magic_function(x):
+    """
+
+    """
+-----
+
+“But, I'm not going to share my code” you say?
+
+What if you come back to this block of code next week, next month, next year?
+If you're over 30 you probably have trouble remembering what
+you did yesterday. Save yourself from future headaches, comment as you go.
+
+TIP: Comment your code clearly enough that its meaning will be clear to you 3 months later, on
+a bad day, with no coffee.
+
+
+==== Dynamic typing
+
+Python is a _dynamically typed_ language which in English means that
+you can assign any type of value to any variable at any time. This
+means that you can do things like this:
+
+[source,python,stdout]
+----
+a = 5
+----
+
+[source,python,stdout]
+----
+a = 'hello'
+a
+----
+
+[source,python,stdout]
+----
+a = 1.2
+a
+----
+
+If you're looking at that and thinking “Well, that makes sense.” welcome
+to the club. In many languages you would need to define the `type` of `a`
+when creating it. If we defined it as `int` and then tried to assign a `str` to
+we would get an error.
+
+This _dynamic typing_ gives you a lot of freedom in your code: you
+don't need to think about how you are going to use a variable before you
+create it, you can store special values such as `None` in any variable and
+you can re-use temporary variables without making sure they are of the correct type.
+
+But, just because you _can_ do something doesn't mean you _should_. So think
+carefully about how you re-use variables and keep them descriptive. It also
+leaves you open to _type errors_ where you try to do something with
+a variable thinking it's one type and it's another. Thankfully there are
+ways to deal with this.
+
+==== Duck typing
+
+Another core Python concept that it's worth getting your head around
+is that of _duck typing_.
+
+[quote, James Whitcomb Riley]
+When I see a bird that walks like a duck and swims like a duck and quacks like a duck, I call that bird a duck.
+
+What this means in practise is that rather than worrying about what
+_type_ a variable is, instead consider what _properties_ a variable has. This is
+particularly relevant when we start using custom classes. Say we create a custom
+class that has the functionality of a standard Python dictionary.
+We _should_ be able to substitute our new class in for a dictionary and pass this
+to any function we like.
+
+.This passes the duck test (Photo: Alain Carpenter)
+image::./img/030-python-duck.jpg[]
+
+
+But imagine whoever wrote that function didn't know anything about ducks.
+They start out defining the function like this:
+
+[source,python]
+----
+def my_awesome_function(dict_in):
+    """
+    Accepts a variable dict_in of type `dict` and returns it
+    with keys and values swapped (destructive if duplicate values exist!)
+    """
+    dict_out = dict()
+    for key, value in dict_in.items():
+        dict_out[value] = key
+    return dict_out
+----
+
+Lets try executing this:
+
+[source,python,stdout]
+----
+data = { 'a':1, 'b':2, 'c':3 }
+data = my_awesome_function(data):
+data
+----
+
+But then someone who hasn't read the documentation comes along and tries to
+call the function with a `list`:
+
+[source,python,stdout]
+----
+data = [1,2,3,4]
+data = my_awesome_function(data):
+data
+----
+
+Well, that doesn't work. But the author of the function wants to catch
+this error more elegantly — perhaps raising a helpful exception to
+describe the problem. Lets update the function:
+
+[source,python]
+----
+def my_awesome_function(dict_in):
+    """
+    Accepts a variable dict_in of type `dict` and returns it
+    with keys and values swapped (destructive if duplicate values exist!)
+    """
+
+    if type(dict_in) != dict:
+        raise Exception("Please supply a dictionary.")
+
+    dict_out = dict()
+    for key, value in dict_in.items():
+        dict_out[value] = key
+    return dict_out
+----
+
+Great! Right? Not really. While this will certainly solve our `list` failure, it
+only works if `dict_in` is _exactly_ of the type `dict`. If we're using a
+subclassed type such as `defaultdict` this will now fail.
+
+[source,python,stdout]
+----
+from collections import defaultdict
+my_dict = defaultdict(int)
+type(my_dict) == defaultdict
+----
+
+[source,python,stdout]
+----
+type(my_dict) == dict
+----
+
+We _could_ work around this
+by using `isinstance()`. This returns true if the `dict_in` object is of the
+class `dict` or of _any subclass_ of `dict`:
+
+[source,python,stdout]
+----
+isinstance(my_dict, dict)
+----
+
+We could implement this in the function as follows:
+
+[source,python]
+----
+def my_awesome_function(dict_in):
+    """
+    Accepts a variable dict_in of type `dict` and returns it
+    with keys and values swapped (destructive if duplicate values exist!)
+    """
+
+    if isinstance(dict_in, dict):
+        raise Exception("Please supply a dictionary.")
+
+    dict_out = dict()
+    for key, value in dict_in.items():
+        dict_out[value] = key
+    return dict_out
+----
+
+Sorted? Still no. This code will still fail for any `dict`-like object
+that isn't a subclass of `dict`.
+
+So how can we work around this? This brings
+us back to ducks. In the function we use a single feature of the `dict` type:
+the `.items()` property. If that is the feature we want, that is the feature we should test.
+
+The simplest way to do this is simply call the attribute and catch the `Exception`:
+
+[source,python]
+----
+def my_awesome_function(dict_in):
+    """
+    Accepts a variable dict_in of type `dict` and returns it
+    with keys and values swapped (destructive if duplicate values exist!)
+    """
+
+    try:
+        dict_in.items()
+    except AttributeError:
+        raise Exception("Please supply a dictionary-like type.")
+
+    dict_out = dict()
+    for key, value in dict_in.items():
+        dict_out[value] = key
+    return dict_out
+----
+
+We could even re-structure this to avoid the double-call to the `.items()` property,
+as follows:
+
+[source,python]
+----
+def my_awesome_function(dict_in):
+    """
+    Accepts a variable dict_in of type `dict` and returns it
+    with keys and values swapped (destructive if duplicate values exist!)
+    """
+    dict_out = dict()
+
+    try:
+        for key, value in dict_in.items():
+            dict_out[value] = key
+
+    except AttributeError:
+        raise Exception("Please supply a dictionary-like type.")
+
+    return dict_out
+----
+
+Now we take the dictionary `dict_in` and attempt to _use_ it like a dictionary.
+If we catch an `AttributeError` exception (which here can _only_ come from the `dict_in.items()` )
+we raise a more descriptive exception for the user.
+
+[source,python,stdout]
+----
+data = [1,2,3,4]
+data = my_awesome_function(data):
+data
+[NICE ERROR]
+----
+
+The _duck typing_ principle is a key part of writing _Pythonic_ code. This example
+also leads us nicely into the next section.
+
+==== Ask for forgiveness, not permission
+
+WARNING: This is a programming principle, not life advice.
