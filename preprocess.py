@@ -39,12 +39,12 @@ for file in adocs:
     with open(file, 'r') as f:
         txt = f.read()
 
-    changes = False
+    changes = 0
     offset = 0
     # Match regex to find code blocks; build match objects
     for rx in REGEXES:
         for mo in rx.finditer(txt):
-            changes = True
+            changes += 1
             cell = NotebookNode(
                 cell_type='code',
                 input=mo.group('code'),
@@ -58,25 +58,19 @@ for file in adocs:
             except Exception as e:
                 pass
                 
-            if 'stdout' in mo.group('config'):
-                stdout = []
-                for out in cell.outputs:
-                    if hasattr(out, 'text'):
-                        stdout.append( out.text )
-                        
-                output = '\n'.join(stdout)
+            output = []
+            for out in cell.outputs:
+                if hasattr(out, 'text'):
+                    output.append( out.text )
+                if hasattr(out, 'traceback'):
+                    output.append( ansi_escape.sub('', '\n'.join(out.traceback)))
                 
-            elif 'stderr' in mo.group('config'):
-                stderr = []
-                for out in cell.outputs:
-                    if hasattr(out, 'traceback'):
-                        stderr.append( ansi_escape.sub('', '\n'.join(out.traceback)))
-                
-                output = '\n'.join(stderr)
-                
-            else:
-                continue # Next block
+            if not output:
+                continue
             
+            # Join up then strip trailing newlines.
+            output = '\n'.join(output)
+            output = output.strip()
             
             # We want to output the relevant result, whether
             # stdout or stderr. Output is to the subsequent 
@@ -84,14 +78,14 @@ for file in adocs:
             
             start, end = mo.span()
             start, end = start+offset, end+offset
-            
-            if txt[end:end+len(STDOUT_DELIMITER)] == STDOUT_DELIMITER:
+
+            # Only fill in blocks immediately followed by a container
+            if output and txt[end:end+len(STDOUT_DELIMITER)] == STDOUT_DELIMITER:
                 outstart = end+len(STDOUT_DELIMITER)
                 outend = txt[end+len(STDOUT_DELIMITER):].index(STDOUT_DELIMITER)+outstart
-                
+                previous_len = len(txt)
                 txt = txt[:outstart+1] + output + txt[outend:]
-                
-                offset += len(output) +1 # \n
+                offset += len(txt) - previous_len
 
     # If we matched anything we need to rewrite
     if changes:

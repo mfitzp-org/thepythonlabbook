@@ -7,7 +7,7 @@ If you don't want to read the descriptions of the packages to install
 you can skip this section. Just run the following commands to install
 the neccessary packages on your system:
 
-[source,bash]
+[.terminal]
 ----
 pip install matplotlib seaborn ggplot2 pandas
 ----
@@ -33,7 +33,7 @@ publication plots in no time.
 To get the best of both worlds we're going to install both matplotlib
 and a couple of alternative interfaces.
 
-[source,bash]
+[.terminal]
 ----
 pip3 install matplotlib seaborn ggplot2
 ----
@@ -58,7 +58,7 @@ for some really powerful data analysis. It even comes with it's own
 simple plotting functions (built on, you guessed it, _matplotlib_). We
 can install it just like any other Python package:
 
-[source,bash]
+[.terminal]
 ----
 pip3 install pandas
 ----

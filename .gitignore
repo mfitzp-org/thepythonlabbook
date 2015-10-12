@@ -58,3 +58,6 @@ target/
 
 # IDE
 .idea
+
+# Custom
+data/

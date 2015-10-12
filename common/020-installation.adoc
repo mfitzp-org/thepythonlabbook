@@ -25,7 +25,7 @@ packages for Python that are sometimes hard to install.
 
 To install Homebrew open up a Terminal and enter:
 
-[source,bash]
+[.terminal]
 ----
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ----
@@ -36,7 +36,7 @@ Once Homebrew has finished installing you can now install a version of Python
 to use for programming. To install software using Homebrew you use the
 `brew install` command, as follows:
 
-[source,bash]
+[.terminal]
 ----
 brew install python3
 ----
@@ -73,14 +73,14 @@ http://bit.ly/1Qlrr3T
 
 To install Jupyter use:
 
-[source,bash]
+[.terminal]
 ----
 pip install jupyter
 ----
 
 You can now launch the Jupyter web interface using:
 
-[source,bash]
+[.terminal]
 ----
 jupyter notebook
 ----

@@ -28,7 +28,7 @@ calculations literally into the Python interpreter.
 The operators available are: addition `a+b`, subtraction `a-b`, division `a/b`,
 power x^n `x**n`. There should be no surprises here:
 
-[source,python,stdout]
+[source,python]
 ----
 1 + 5
 ----
@@ -36,7 +36,7 @@ power x^n `x**n`. There should be no surprises here:
 6
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 5 - 7
 ----
@@ -44,23 +44,23 @@ power x^n `x**n`. There should be no surprises here:
 -2
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 8 / 2
 ----
 ....
-4.0
+4
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 8 / 3
 ----
 ....
-2.6666666666666665
+2
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 2 ** 8
 ----
@@ -88,7 +88,7 @@ are modulus `a%b` and integer division `a//b`. These operators are related in
 a useful way. _Integer division_ performs division but _always_ returns a whole
 number, throwing away the remainder. _Modulus_ gives you that remainder.
 
-[source,python,stdout]
+[source,python]
 ----
 6 // 3
 ----
@@ -96,7 +96,7 @@ number, throwing away the remainder. _Modulus_ gives you that remainder.
 2
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 6 % 3
 ----
@@ -104,7 +104,7 @@ number, throwing away the remainder. _Modulus_ gives you that remainder.
 0
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 7 // 3
 ----
@@ -112,7 +112,7 @@ number, throwing away the remainder. _Modulus_ gives you that remainder.
 2
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 7 % 3
 ----
@@ -124,7 +124,7 @@ These operators become particularly useful when you're trying to do something to
 __n__th value or you want to split large numbers into upper and lower parts.
 
 
-[source,python,stdout]
+[source,python]
 ----
 123456 // 1000
 ----
@@ -132,7 +132,7 @@ __n__th value or you want to split large numbers into upper and lower parts.
 123
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 123456 % 1000
 ----
@@ -162,7 +162,7 @@ This means that two identical `str` of 20 chacters or less are both _equal_ and
 _the same_, while identical longer strings are only _equal_.
 
 
-[source,python,stdout]
+[source,python]
 ----
 x = 'a' * 20
 y = 'a' * 20
@@ -172,7 +172,7 @@ x is y
 True
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 x = 'a' * 21
 y = 'a' * 21
@@ -185,7 +185,7 @@ False
 The same principal applies to numbers less than or equal to 256 (not coincidentally
 the size of one `byte`):
 
-[source,python,stdout]
+[source,python]
 ----
 a = 256
 b = 256
@@ -195,7 +195,7 @@ a is b
 True
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 a = 257
 b = 257
@@ -207,7 +207,7 @@ False
 
 But, if you assign the two values at the same time they become _the same_ again.
 
-[source,python,stdout]
+[source,python]
 ----
 a = 257; b = 257
 a is b
@@ -244,7 +244,7 @@ than you might think. Is `4.0` an integer? Mathematically yes, computationally n
 You can use the `int` type to cast `float` values to an `int`. This will throw
 away any fractional part of the number.
 
-[source,python,stdout]
+[source,python]
 ----
 int(4.3)
 ----
@@ -268,7 +268,7 @@ In Python floats are sufficiently large that the effects of these tradeoffs are
 not likely to affect your results. But there are gotchas to watch out for,
 particularly when trying to compare floating point values:
 
-[source,python,stdout]
+[source,python]
 ----
 0.1 + 0.2
 ----
@@ -276,7 +276,7 @@ particularly when trying to compare floating point values:
 0.30000000000000004
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 0.1 + 0.2 == 0.3
 ----
@@ -336,7 +336,7 @@ my_dict['a'] = 'hello'
 
 You can read the values out by key as follows:
 
-[source,python,stdout]
+[source,python]
 ----
 my_dict['a']
 ----
@@ -346,7 +346,7 @@ my_dict['a']
 
 You can also define dictionaries using the `{'key':value}` literal syntax:
 
-[source,python,stdout]
+[source,python]
 ----
 my_dict = {'a':'hello', 'b':'goodbye'}
 my_dict['b']
@@ -360,7 +360,7 @@ my_dict['b']
 It is possible to store multiple values by using other Python types as values. For
 example you could store a list of values under a single key.
 
-[source,python,stdout]
+[source,python]
 ----
 my_dict = dict()
 my_dict['a'] = [1,2,3,4]
@@ -370,7 +370,7 @@ my_dict
 {'a': [1, 2, 3, 4]}
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 my_dict['a']
 ----
@@ -380,7 +380,7 @@ my_dict['a']
 
 You can even store dictionaries as values in dictionaries.
 
-[source,python,stdout]
+[source,python]
 ----
 my_dict = dict()
 my_dict['c'] = {'d': 'whatever', 'e': 'you', 'f': 'like'}
@@ -419,7 +419,7 @@ equality.
 The examples below give a quick overview of how `True` and `False`
 values can be used:
 
-[source,python,stdout]
+[source,python]
 ----
 1 is 1
 ----
@@ -427,7 +427,7 @@ values can be used:
 True
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 True == True
 ----
@@ -435,7 +435,7 @@ True == True
 True
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 True == False
 ----
@@ -443,7 +443,7 @@ True == False
 False
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 (1 == 1) == True
 ----
@@ -451,7 +451,7 @@ False
 True
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 (1 == 2) == True
 ----
@@ -459,7 +459,7 @@ True
 False
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 (1 == 2) == False
 ----
@@ -495,7 +495,7 @@ If the last two seem a little esoteric don't worry. Look at the examples below
 to understand what is going on:
 
 .`None` is equal to itself
-[source,python,stdout]
+[source,python]
 ----
 None == None
 ----
@@ -503,24 +503,24 @@ None == None
 True
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 None > None
 ----
 ....
-
+False
 ....
 
 .`None` is not equal to _anything_ else
-[source,python,stderr]
+[source,python]
 ----
 1 == None
 ----
 ....
-
+False
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 'hello' == None
 ----
@@ -529,16 +529,13 @@ False
 ....
 
 .All things that are `None` are equal
-[source,python,stdout]
+[source,python]
 ----
 a = None
 b = None
 ----
-....
 
-....
-
-[source,python,stdout]
+[source,python]
 ----
 a == None
 ----
@@ -546,7 +543,7 @@ a == None
 True
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 a == b
 ----
@@ -555,7 +552,7 @@ True
 ....
 
 .All things that are `None` are the same
-[source,python,stdout]
+[source,python]
 ----
 a = None
 b = None
@@ -565,7 +562,7 @@ a is None
 True
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 a is b
 ----
@@ -603,7 +600,7 @@ There is not much more to say about that.
 
 To test for equality use the double-equals `==` sign.
 
-[source,python,stdout]
+[source,python]
 ----
 1 == 2
 ----
@@ -611,7 +608,7 @@ To test for equality use the double-equals `==` sign.
 False
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 1 == 1
 ----
@@ -623,36 +620,33 @@ WARNING: A single `=` is
 used to assign a value to a variable. Mixing these up is a common source of
 bugs, but Python will usually tell you when you do it.
 
-[source,python,stderr]
+[source,python]
 ----
 1 = 1
 ----
 ....
-  File "<ipython-input-44-4c0a01f26144>", line 1
+File "<ipython-input-44-4c0a01f26144>", line 1
     1 = 1
-         ^
 SyntaxError: can't assign to literal
-
 ....
 
-[source,pythons,stderr]
+[source,pythons]
 ----
 if a = 1:
    print("OK")
 ----
 ....
-  File "<ipython-input-45-1c60cd5d1ef6>", line 1
+File "<ipython-input-45-1c60cd5d1ef6>", line 1
     if a = 1:
          ^
 SyntaxError: invalid syntax
-
 ....
 
 You can also test if something is greater `>`, less than `<`,
 greater or equal `>=` and less than or equal `<=` to something else.
 
 
-[source,python,stdout]
+[source,python]
 ----
 5 > 2
 ----
@@ -660,7 +654,7 @@ greater or equal `>=` and less than or equal `<=` to something else.
 True
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 2 > 2
 ----
@@ -668,7 +662,7 @@ True
 False
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 2 >= 2
 ----
@@ -676,7 +670,7 @@ False
 True
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 5 >= 6
 ----
@@ -684,7 +678,7 @@ True
 False
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 6 <= 6
 ----
@@ -692,7 +686,7 @@ False
 True
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 5 <= 6
 ----
@@ -700,7 +694,7 @@ True
 True
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 2 < 6
 ----
@@ -708,7 +702,7 @@ True
 True
 ....
 
-[source,python,stdout]
+[source,python]
 ----
 2 < 2
 ----
@@ -767,7 +761,7 @@ A special case of this that you might find yourself using is the _infinite loop 
 Here we set `True` as the loop conditional which as we already know _always equals_ `True`.
 The loop will continue until `break` is reached and the loop exits.
 
-[source,python,stdout]
+[source,python]
 ----
 n = 0
 
@@ -777,6 +771,7 @@ while True:
         break
 n
 ----
+[role='white-background']
 ....
 101
 ....

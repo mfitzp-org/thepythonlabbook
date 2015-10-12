@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # Build the books
-asciidoctor -b html -o build/proteomics.html proteomics.adoc
-asciidoctor -b html -o build/metabolomics.html metabolomics.adoc
+asciidoctor -a stylesheet=style.css -a stylesdir=./styles -b html -o build/proteomics.html proteomics.adoc
+asciidoctor -a stylesheet=style.css -a stylesdir=./styles -b html -o build/metabolomics.html metabolomics.adoc
 
-asciidoctor -b html -o build/the-python-lab-book.html complete.adoc
+asciidoctor -a stylesheet=style.css -a stylesdir=./styles -b html -o build/the-python-lab-book.html complete.adoc
 
 # Build the PDFs
 asciidoctor -b pdf -o build/proteomics.pdf proteomics.adoc
