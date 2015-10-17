@@ -1,0 +1,57 @@
+=== Partial Least Squares Discriminant Analysis (PLS-DA)
+
+Partial least squares discriminant analysis (PLS-DA) is an adaptation of PLS
+regression methods to the problem of supervised clustering. It has seen
+extensive use in the analysis of multivariate datasets, such as that derived
+from NMR-based metabolomics.
+
+
+In this method the
+groups within the samples are already known (e.g. experimental groups) and the
+goal therefore is to determine two things —
+
+1. Are the groups *actually* different.
+2. What are the features that best describe the differences between the groups.
+
+In an experimental context this means determining whether control and test
+samples are different, and identifying the (known, quantified) experimental
+variables that contribute to that difference.
+
+PLS-DA is based on PLS regression (PLS-R) with the Y variable generated from
+experimental group membership, mapped into a linear space. In a 2-group experiment
+this can be as simple as 0 and 1.
+
+==== Setting up
+
+The implementation of PLS we will be using is provided by the `scikit-learn`
+library. We will also be making use of `matplotlib` for plotting our outputs.
+
+[.terminal]
+----
+pip install sklearn matplotlib
+----
+
+The sample data for this section is available for download from:
+http://www.thepythonlabbook.com/data/partial-least-squares-discriminant-analysis-plsda.zip
+
+Download and unzip the file into your data folder.
+
+For this demo we will be using 1D ^1^H NMR data as it makes explanation and
+visualization of the PLS models easy to understand. However, you can easily
+apply these same methods to any type of multivariate data set.
+
+==== Loading the data
+
+Before starting, let's take a look at the data we are working with.
+Create a new Jupyter notebook using the Python 3 kernel, and in the first cell
+enter and run the following. This will import all the neccessary libraries, as
+well as using the `%matplotlib` magic to display output figures in the notebook.
+
+[source,python]
+----
+%matplotlib inline
+import matplotlib.pyplot as plt
+import numpy as np
+import os
+plt.style.use('ggplot')
+----

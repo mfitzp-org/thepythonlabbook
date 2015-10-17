@@ -25,6 +25,13 @@ To make sure you can run the following command on the terminal:
 pip install numpy scipy nmrglue matplotlib
 ----
 
+The demo data for this section is available for download from:
+http://www.thepythonlabbook.com/data/1d-1h-nmr-data-processing.zip
+
+Download and unzip the file into your data folder.
+
+==== Loading Bruker FID spectra
+
 Create a new Jupyter notebook using the Python 3 kernel, and in the first cell
 enter and run the following. This will import all the neccessary libraries, as
 well as using the `%matplotlib` magic to display output figures in the notebook.
@@ -37,16 +44,8 @@ import nmrglue as ng
 import numpy as np
 import scipy as sp
 import os
-plt.style.use(['ggplot'])
+plt.style.use('ggplot')
 ----
-
-The demo data for this section is available for download from:
-http://www.thepythonlabbook.com/data/1d-1h-nmr-data-processing.zip
-
-Download and unzip the file into your data folder.
-
-==== Loading Bruker FID spectra
-
 Bruker-format data is processed using a digital filter before saving as FID, this
 filter must be removed for subsequent analysis to work. To open a given spectra,
 pass the parent folder of the `fid` file.
