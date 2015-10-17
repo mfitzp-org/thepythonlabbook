@@ -1,8 +1,13 @@
 import os
 import re
+import sys
 
 from runipy.notebook_runner import NotebookRunner
 from IPython.nbformat import NotebookNode
+
+filter_by = sys.argv[1:2]
+if filter_by:
+    filter_by = filter_by[0]
 
 """
 Pre-process .doc files to execute code, insert stdout
@@ -12,11 +17,12 @@ adocs = []
 for root, dirs, files in os.walk("."):
     for file in files:
         if file.endswith(".adoc"):
-             adocs.append( os.path.join(root, file) )
+            if not filter_by or filter_by in file:
+                adocs.append( os.path.join(root, file) )
 
 ansi_escape = re.compile(r'\x1b[^m]*m')
 STDOUT_DELIMITER = '\n....'
-             
+
 REGEXES = [
     # Standard code blocks
     re.compile(r'^\[(?P<config>[^]]*?python[^]]*?)\]\n----\n(?P<code>.*?)\n----$', re.MULTILINE | re.DOTALL),
@@ -25,11 +31,11 @@ REGEXES = [
 
 #    re.compile('^\[[.*python.*]\]\n----(?P<code>.*)----'),
 #    re.compile('^\[[.*python.*]\]\n(?P<code>.*)\n\n'),
-]             
+]
 
 # Create a kernel runner
 runner = NotebookRunner(None)
-             
+
 # Iterate list of documents; searching for code blocks and snippets
 # using [source,python,  (exec,stdout)
 for file in adocs:
@@ -51,7 +57,7 @@ for file in adocs:
     if not matches:
         continue
 
-    matches.sort(key=lambda x: x[0][0])        
+    matches.sort(key=lambda x: x[0][0])
 
     for (start, end), mo in matches:
         changes += 1
@@ -64,28 +70,28 @@ for file in adocs:
         blocks.append(cell)
         try:
             runner.run_cell(cell)
-            
+
         except Exception as e:
             pass
-            
+
         output = []
         for out in cell.outputs:
             if hasattr(out, 'text'):
                 output.append( out.text )
             if hasattr(out, 'traceback'):
                 output.append( ansi_escape.sub('', '\n'.join(out.traceback)))
-            
+
         if not output:
             continue
-        
+
         # Join up then strip trailing newlines.
         output = '\n'.join(output)
         output = output.strip()
-        
+
         # We want to output the relevant result, whether
-        # stdout or stderr. Output is to the subsequent 
+        # stdout or stderr. Output is to the subsequent
         # '....' delimited block (pre).
-        
+
         start, end = start+offset, end+offset
 
         # Only fill in blocks immediately followed by a container
@@ -103,15 +109,8 @@ for file in adocs:
                 print("-------------")
                 print(output)
                 print("-------------")
-                
+
     # If we matched anything we need to rewrite
     if changes:
         with open(file, 'w') as f:
             f.write(txt)
-        
-    
-    
-
-        
-
-

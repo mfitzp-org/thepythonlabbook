@@ -10,8 +10,8 @@ In this method the
 groups within the samples are already known (e.g. experimental groups) and the
 goal therefore is to determine two things —
 
-1. Are the groups *actually* different.
-2. What are the features that best describe the differences between the groups.
+1. Are the groups _actually_ different.
+2. What are the _features_ that best describe the differences between the groups.
 
 In an experimental context this means determining whether control and test
 samples are different, and identifying the (known, quantified) experimental
@@ -24,11 +24,12 @@ this can be as simple as 0 and 1.
 ==== Setting up
 
 The implementation of PLS we will be using is provided by the `scikit-learn`
-library. We will also be making use of `matplotlib` for plotting our outputs.
+library. We will also be making use of `matplotlib` for plotting our outputs
+and `pandas` for some basic data handling.
 
 [.terminal]
 ----
-pip install sklearn matplotlib
+pip install scikit-learn matplotlib pandas
 ----
 
 The sample data for this section is available for download from:
@@ -36,9 +37,10 @@ http://www.thepythonlabbook.com/data/partial-least-squares-discriminant-analysis
 
 Download and unzip the file into your data folder.
 
-For this demo we will be using 1D ^1^H NMR data as it makes explanation and
-visualization of the PLS models easy to understand. However, you can easily
-apply these same methods to any type of multivariate data set.
+For this demo we will start with 1D ^1^H NMR data as it makes explanation and
+visualization of the PLS models easy to understand. However, later we will
+also generate PLS-DA models for other data types, to demonstrate how you
+can easily apply these same methods to any type of multivariate data set.
 
 ==== Loading the data
 
@@ -52,6 +54,86 @@ well as using the `%matplotlib` magic to display output figures in the notebook.
 %matplotlib inline
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
+import sklearn
 import os
 plt.style.use('ggplot')
+----
+
+We will start by loading the data. The source data is provided in CSV format
+with experimental samples along the horizontal axis and spectral variables (ppm) along the
+vertical axis. In addition to the a sample number, there is also a sample group
+(class) from the experiment).
+
+There are many ways to load this data, but using `pandas` allows
+us to keep the elements of the data together nicely.
+
+[source,python]
+----
+df = pd.read_csv(os.path.join('/Users/mxf793/books/thepythonlabbook/data','partial-least-squares-discriminant-analysis-plsda','data.csv'), index_col=0, header=[0,1])
+df
+----
+
+Let's plot the raw data to begin with to get an idea of what we're working with.
+We can use the build in `pandas` plot functions to do this quickly.
+
+[source,python]
+----
+df.plot(kind='line',legend=False, figsize=(12,4))
+----
+
+////
+python
+_.figure.savefig('./img/partial-least-squares-discriminant-analysis-plsda/nmr-data.png', dpi=200)
+////
+
+.The processed NMR data for our analysis
+image::./img/partial-least-squares-discriminant-analysis-plsda/nmr-data.png[]
+
+If you look closely you'll see most of the samples look very alike, but there is
+one (in red) that looks very unusual. This will become important later.
+
+You might be interested to see experimental groups plotted the same color. The
+information on experimental groups is stored in the Pandas column `MultiIndex`
+'Group', and can be retrieved using:
+
+[source,python]
+----
+df.columns.get_level_values('Group')
+----
+....
+Index([u'H', u'N', u'N', u'N', u'N', u'N', u'N', u'N', u'N', u'N', u'H', u'H',
+       u'H', u'H', u'H', u'H', u'H'],
+      dtype='object', name=u'Group')
+....
+
+As this is basically a list of values ("N" or "H", one for each sample) we
+can use this, together with a dictionary colormap, to plot samples from each
+group in a single colour.
+
+[source,python]
+----
+colormap = {
+    'N': '#ff0000',  # Red
+    'H': '#0000ff',  # Blue
+}
+
+df.plot(kind='line',legend=False, figsize=(12,4), color=[colormap[c] for c in df.columns.get_level_values('Group')])
+----
+
+////
+python
+_.figure.savefig('./img/partial-least-squares-discriminant-analysis-plsda/nmr-data-coloured.png', dpi=200)
+////
+
+.The processed NMR data with sample group colours
+image::./img/partial-least-squares-discriminant-analysis-plsda/nmr-data-coloured.png[]
+
+So now we know the strange sample is in the H (blue) group.
+
+
+
+[source,python]
+----
+from sklearn.cross_decomposition import PLSRegression
 ----
