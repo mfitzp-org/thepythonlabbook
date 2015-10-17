@@ -12,7 +12,7 @@ include::./common/000-099.adoc[]
 
 == Recipes
 
-include::./{topic-slug}/100-899.adoc[]
+include::./{topic-slug}/recipes.adoc[]
 
 include::./common/900-999.adoc[]
 

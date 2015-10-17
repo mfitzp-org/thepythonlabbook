@@ -41,6 +41,7 @@ makedict = lambda **kwargs:kwargs
 makedict(hello=1)
 ----
 ....
+{'hello': 1}
 ....
 
 One common use of lambdas is to extract a key from a tuple for sorting. For
@@ -96,28 +97,33 @@ and the avoidance of tricks. The goal is to write code that _everyone_ can under
 The principles underlying Python development have
 been summarised in the _Zen of Python_:
 
-[quote, Tim Peters]
-____
-Beautiful is better than ugly. +
-Explicit is better than implicit. +
-Simple is better than complex. +
-Complex is better than complicated. +
-Flat is better than nested. +
-Sparse is better than dense. +
-Readability counts. +
-Special cases aren't special enough to break the rules. +
-Although practicality beats purity. +
-Errors should never pass silently. +
-Unless explicitly silenced. +
-In the face of ambiguity, refuse the temptation to guess. +
-There should be one-- and preferably only one --obvious way to do it. +
-Although that way may not be obvious at first unless you're Dutch. +
-Now is better than never. +
-Although never is often better than right now. +
-If the implementation is hard to explain, it's a bad idea. +
-If the implementation is easy to explain, it may be a good idea. +
-Namespaces are one honking great idea -- let's do more of those! +
-____
+[source,python]
+----
+import this
+----
+....
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+....
 
 Which, ironically, is an overly long way of saying "simplicity is best".
 
@@ -241,7 +247,7 @@ data = my_awesome_function(data):
 data
 ----
 ....
-File "<ipython-input-65-59a0f1641d56>", line 2
+File "<ipython-input-66-59a0f1641d56>", line 2
     data = my_awesome_function(data):
                                     ^
 SyntaxError: invalid syntax
@@ -257,7 +263,7 @@ data = my_awesome_function(data):
 data
 ----
 ....
-File "<ipython-input-66-8ff84631b1d6>", line 2
+File "<ipython-input-67-8ff84631b1d6>", line 2
     data = my_awesome_function(data):
                                     ^
 SyntaxError: invalid syntax
@@ -397,7 +403,7 @@ data = [1,2,3,4]
 data = my_awesome_function(data):
 ----
 ....
-File "<ipython-input-74-6e9d170b6e9f>", line 2
+File "<ipython-input-75-6e9d170b6e9f>", line 2
     data = my_awesome_function(data):
                                     ^
 SyntaxError: invalid syntax

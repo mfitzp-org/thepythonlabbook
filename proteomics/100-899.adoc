@@ -1,4 +1,0 @@
-include::110-introduction-to-proteomics.adoc[]
-include::120-proteomics-data.adoc[]
-include::130-working-with-raw-data.adoc[]
-include::140-working-with-quantified-data.adoc[]

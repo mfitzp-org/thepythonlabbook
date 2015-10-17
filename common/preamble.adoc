@@ -4,5 +4,7 @@
 //:pdf-page-size: A4
 :icons: font
 :toc: left
+ifdef::backend-pdf[:hires-image-ext: .pdf]
+ifndef::backend-pdf[:hires-image-ext: .png]
 
 Quick, reproducible {topic-lc} in Python

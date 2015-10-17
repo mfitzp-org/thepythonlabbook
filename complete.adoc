@@ -8,10 +8,10 @@ include::./common/000-099.adoc[]
 
 == Metabolomics
 
-include::./metabolomics/100-899.adoc[]
+include::./metabolomics/recipes.adoc[]
 
 == Proteomics
-include::./proteomics/100-899.adoc[]
+include::./proteomics/recipes.adoc[]
 
 
 include::./common/900-999.adoc[]

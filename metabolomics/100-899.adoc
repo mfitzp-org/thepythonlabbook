@@ -1,1 +1,0 @@
-include::120-1D-1H-nmr-data-processing.adoc[]
