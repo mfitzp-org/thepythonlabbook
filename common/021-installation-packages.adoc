@@ -7,10 +7,6 @@ If you don't want to read the descriptions of the packages to install
 you can skip this section. Just run the following commands to install
 the neccessary packages on your system:
 
-[.terminal]
-----
-pip install matplotlib seaborn ggplot2 pandas
-----
 
 ==== The numpy-scipy Stack `numpy scipy`
 

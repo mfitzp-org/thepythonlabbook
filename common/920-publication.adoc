@@ -1,4 +1,176 @@
 == Publication
+
+the cu
+
 === Plots
-=== Packages
+
+The default plots produced by Python plotting libraries are fine for exploratory
+analysis and presentation use. However, when it comes to publishing the findings
+of your research is it important to take the time to improve both the quality and
+the clarity of your visualisations. This section covers a few key issues and
+considerations for publishing your work.
+
+==== Resolution
+
+Publishers typically request high-resolution images for print. In practice. this
+means 200 dpi (or 300 dpi) TIFF images. Thankfully many publishers now also accept
+PDF format images, which if generated correctly can be _resolution independent_,
+that is they can scale to any size required.
+
+==== Size
+
+
+
+==== Formats
+
+As already described there are two broad types of images — raster and vector. In
+the former group (including TIFF, PNG, JPEG) the image is stored as a block
+of pixels (or dots). In the latter, the lines, regions, fills, etc. that make up
+an image are stored independently and reconstructed on the other end.
+
+Vector formats are well suited to diagrams, while raster formats are better suited
+to photographs, or imaging from microscopy. The major formats are discussed below.
+
+
+===== Tagged Image File Format (TIFF)
+
+This is, unfortunately, the most commonly requested image format from publishers.
+
+TIFF images are a _raster_ format, meaning there is a direct dot-by-dot representation
+of the image in the the file. This is in contrast
+to vector formats (see below) which are made up of paths (lines) or JPEG where
+the image is reconstructed algorithmically. This has the benefit of ensuring
+absolute reproduction of the image at the other end,
+but at the expense of massive size. For a 6 cm by 6 cm full-colour image the
+raw TIFF image size is <<FIXME>>. At 12cm by 12 cm you're now at <<FIXME>>.
+
+Most software supports saving of _compressed_ TIFF images, and if yours does you
+should do it. Unfortunately, matplotlib does not save compressed images and so
+you will have to open and re-export them.
+
+If you are asked by the publisher for _uncompressed_ images, this is probably a
+misunderstanding on their part. What the publisher probably means is
+_not lossy compressed_. Sending non-lossy compressed TIFFs will make absolutely
+no difference to the image quality or reproduction and should be preferred.
+
+To save a TIFF version of your image, you can use the following code
+
+[source,python]
+----
+fig.savefig('filename.tif', dpi=200)
+----
+
+Matplotlib will automatically detect the correct save format from the filename.
+The `dpi` settings determines the dots per inch of the resulting file.
+
+
+===== Portable Network Graphics (PNG)
+
+This is a lossless compressed bitmap format, similar to TIF in all but the filesize.
+You can save DPI-specific versions of images using this format, and they will
+display on-screen and on-print at the same size. Unfortunately, most publishers
+don't like, or don't accept, the format.
+
+[source,python]
+----
+fig.savefig('filename.png', dpi=200)
+----
+
+Note that for screen viewing, increasing the dots per inch (dpi) will actually
+increase the visual size of the image. This is because your screen has a fixed
+resolution (typically 96 pixels per inch (ppi)) and every pixel in the image
+is displayed. If you're saving versions of images for separate use, e.g. on
+a web page, you will want to reduce the `dpi` to 96.
+
+===== Joint Photographic Experts Group (JPEG)
+
+This is a lossy compression format that is typically used for photographs or
+other images where loss of detail is not an issue. It will get you limited
+reduction in filesize versus PNG when applied to plots, since they have little complexity.
+However, you may wish to consider it for low-resolution versions of imaging (e.g. microscopy)
+for use on the web.
+
+[source,python]
+----
+fig.savefig('filename.jpg', dpi=200)
+----
+
+===== Scaled Vector Graphics (SVG)
+
+
+
+===== Portable Document Format (PDF)
+
+The Portable Document Format is a little different, in that it is capable of
+containing and representing basically anything — from text, to raster images, to
+vector art — and reproducing it on the other end. This makes it a good solution
+for publication images, and it has started to see increasing acceptance by publishers.
+
+Generating a PDF of a figure from matplotlib is as easy as you would expect:
+
+[source,python]
+----
+fig.savefig('filename.pdf')
+----
+
+Notice that we don't need to specify the dpi setting. This is because the generated
+PDF will be in _vector_ format, meaning that you
+can now print the PDF at any resolution and it will appear the same.
+
+==== Accessibility
+
+while it is not always possible to do this, it should always be a consideration.
+
+The simplest way to avoid the issue of colour-blindness, is to avoid colour altogether.
+Many publications still require monochrome images, or at least charge for the inclusion of
+colour pages. While this is declining with the advent on online-only journals,
+
+Importantly, it is not an _either, or_ choice. By selecting other features to
+annotate your experimental groups _in addition_ to colour, you improve accessibility
+while still maintaining a pretty plot. Below are a few examples of applying these
+principals to common experimental plots.
+
+
+==== Text and labels
+
+
+
+
+==== Proportions
+
+
+
+
+
+
+
+
 === IPython notebooks
+
+Ideally, create a single consolidated notebook that is able to generate all of
+figures in your paper. It is not essential to replicate the layout of sub-figures,
+just to make these elements available for other scientists to explore.
+
+Lay out the notebook out like a paper, with the title at the top, a list of authors
+followed by the abstract (in markdown format, including any links). Next include a
+list of non-standard packages you may have made use of, and suggestions on how to
+install (e.g. `pip install this-great-package`).
+
+Separate the notebook into sections covering the major ideas and steps in your research, in the
+order that these are developed in the paper. Describe _why_ you are performing
+each analysis step. You should include some basic background and reasoning from
+the paper, but consider that the purpose of the notebook is the _analysis_ so
+focus predominantly on explaining the rationale for choosing your methods. After
+this include the source code to generate the figure, including comments for
+parameters that readers may be interested in tweaking. There should be *no*
+magic values in your scripts.
+
+Once the notebook is complete, test that the notebook works with the data files
+included with your paper (e.g. __supplemenetary data__). Replicating your work
+should be a simple case of downloading the notebook, downloading the data and
+hitting "Run".
+
+To help you get started a template IPython notebook is available <<FIXME>> that
+contains the suggested layout. There is also an interesting list of published
+scientific notebooks <<FIXME>> that you may wish to take a look at for ideas of
+how to present your research.

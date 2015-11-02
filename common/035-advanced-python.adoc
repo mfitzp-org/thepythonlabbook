@@ -243,14 +243,11 @@ Lets try executing this:
 [source,python]
 ----
 data = { 'a':1, 'b':2, 'c':3 }
-data = my_awesome_function(data):
+data = my_awesome_function(data)
 data
 ----
 ....
-File "<ipython-input-66-59a0f1641d56>", line 2
-    data = my_awesome_function(data):
-                                    ^
-SyntaxError: invalid syntax
+{1: 'a', 2: 'b', 3: 'c'}
 ....
 
 But then someone who hasn't read the documentation comes along and tries to
@@ -259,14 +256,25 @@ call the function with a `list`:
 [source,python]
 ----
 data = [1,2,3,4]
-data = my_awesome_function(data):
+data = my_awesome_function(data)
 data
 ----
 ....
-File "<ipython-input-67-8ff84631b1d6>", line 2
-    data = my_awesome_function(data):
-                                    ^
-SyntaxError: invalid syntax
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-67-84d456b6a4ce> in <module>()
+      1 data = [1,2,3,4]
+----> 2 data = my_awesome_function(data)
+      3 data
+
+<ipython-input-65-314e6c21d127> in my_awesome_function(dict_in)
+      5     """
+      6     dict_out = dict()
+----> 7     for key, value in dict_in.items():
+      8         dict_out[value] = key
+      9     return dict_out
+
+AttributeError: 'list' object has no attribute 'items'
 ....
 
 Well, that doesn't work. But the author of the function wants to catch

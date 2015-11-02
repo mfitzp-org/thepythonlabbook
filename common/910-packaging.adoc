@@ -1,5 +1,8 @@
 == Packaging
 
+So, you've written some awesome code and you want to share it with the Python
+community? Great! You want to create a package.
+
 === PyPi
 
 === Source packages
