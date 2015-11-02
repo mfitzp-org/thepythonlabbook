@@ -1,0 +1,9 @@
+== Recipes
+
+Recipes are snippets of reusable code that you will find yourself using over and over again. By combining these
+short functions and scripts together you should be able to achieve anything you want to in your analysis. These recipes
+are referenced when they are used (either directly, or in a derived form) elsewhere in the book, so you can see them
+in action. You may find it useful to practise applying these recipes to some test data to become familiar with them, and
+then use this section as a reference for your future work.
+
+

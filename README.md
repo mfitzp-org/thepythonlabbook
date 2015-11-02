@@ -1,3 +1,0 @@
-# thepythonlabbook
-
-Python for science.

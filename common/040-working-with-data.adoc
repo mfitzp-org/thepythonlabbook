@@ -5,3 +5,100 @@
 === Loading and saving data
 === The Pandas Index
 === Manipulating data frames
+
+
+
+=== Boolean filtering and selection
+
+
+
+
+=== Filtering and selection by string
+
+Below is a series of useful recipes for filtering and selecting data from
+Pandas DataFrames. The principal behind each of the recipes is the same: first we
+build a  boolean (`bool`) type mask, where the matching items marked as `True`
+and those that don't are marked `False`. We can then apply this boolean index to the
+original array to select (and return) the target elements).
+
+For example, here we build a mask:
+
+[source,python]
+----
+mylist = np.array(['a','b','c','d','e','f','g'])
+search = 'a'
+mylist == search
+----
+....
+....
+
+...and now we apply the mask the original array, to return the matching values:
+
+[source,python]
+----
+mylist[ mylist == search ]
+----
+....
+....
+
+
+
+==== Filtering a Pandas `MultiIndex`
+
+You can apply the same filtering approach to a Pandas `MultiIndex`:
+
+[source,python]
+----
+df.iloc[ df.index.get_level_values('IndexColumn') == search ]
+df.iloc[ df.columns.get_level_values('IndexColumn') == search ]
+----
+
+==== Matching string containing string
+
+String-contains matching can be performed using the Python `in` keyword, e.g.
+`'a' in 'cat'` returns `True`. However, this cannot be applied to NumPy arrays,
+and by extension to Pandas Series. To perform this type of matching you must
+iterate and test each value.
+
+[source,python]
+----
+df.iloc[ [search in s for s in df.index.get_level_values('IndexColumn')] ] # <1>
+----
+<1> Pandas can handle a `list` of `bool` as a boolean index without conversion to an `array`.
+
+For case-insensitive search we can lowercase both the search and string:
+
+[source,python]
+----
+df.iloc[ [search.lower() in s.lower() for s in df.index.get_level_values('IndexColumn')] ] # <1>
+----
+
+
+
+==== Matching multiple indexes
+
+To search in multiple index columns, we can get the values as before, but use `zip` and `join` to build a single string
+for the search to be applied against. We need to select a separator value (e.g. `|`) to isolate parts and prevent
+creating matches by the join. Otherwise adjacent columns with `cat` and `tack` would match `attack`.
+
+[source,python]
+----
+df.iloc[ [search.lower() in '|'.join(s).lower() for s in
+    zip(
+        df.index.get_level_values('IndexColumnA'),
+        df.index.get_level_values('IndexColumnB')
+        )
+       ] ]
+----
+
+
+==== Matching all indexes
+
+Matching all index columns is slightly simpler, as by default iterating over the index returns a `list` of items from
+each row.
+
+
+[source,python]
+----
+df.iloc[ [search.lower() in '|'.join(s).lower() for s in df.index.values ] ]
+----

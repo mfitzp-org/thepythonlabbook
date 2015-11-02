@@ -1,0 +1,22 @@
+= The Python Lab Book
+:topic:  Science
+:topic-lc: science
+:topic-slug: science
+:topic-slug: science
+include::./common/preamble.adoc[]
+
+include::./common/000-099.adoc[]
+
+include::./recipes/introduction.adoc[]
+include::./science/recipes.adoc[]
+
+include::./science/protocols.adoc[]
+
+include::./common/900-999.adoc[]
+
+include::./common/bibliography.adoc[]
+
+include::./metabolomics/bibliography.adoc[]
+include::./proteomics/bibliography.adoc[]
+
+include::./common/postamble.adoc[]

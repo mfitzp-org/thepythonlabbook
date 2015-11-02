@@ -1,0 +1,20 @@
+=== 1D ^1^H NMR data processing
+
+1D ^1^H NMR is a common technique applied to metabolomic studies, being well suited
+to untargeted analysis of complex biofluids. It has been successfully applied to
+the classification and diagnosis of a number of diseases including [ref].
+
+MetaboHunter is a simple NMR fitting and quantification tool
+from Dan Tulpan.  Submitted spectra are matched
+peak-wise against a library of known compounds and then regions
+of the spectra assigned to particular metabolites. This approach
+has its limitations, but can be useful for a quick
+overview of spectral components.
+
+There is a Python package available to perform searching and matching
+directly from within your scripts.
+
+[source,bash]
+pip3 install metabohunter
+
+NOTE: This package was written by the author (Martin Fitzpatrick).
