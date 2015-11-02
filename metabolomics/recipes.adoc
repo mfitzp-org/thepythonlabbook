@@ -1,2 +1,0 @@
-include::../recipes/1D-1H-nmr-data-processing.adoc[]
-include::../recipes/partial-least-squares-discriminant-analysis-plsda.adoc[]

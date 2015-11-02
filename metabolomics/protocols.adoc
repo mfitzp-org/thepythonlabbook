@@ -1,0 +1,2 @@
+include::../protocols/1D-1H-nmr-data-processing.adoc[]
+include::../protocols/partial-least-squares-discriminant-analysis-plsda.adoc[]
