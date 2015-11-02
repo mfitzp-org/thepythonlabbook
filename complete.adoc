@@ -6,20 +6,16 @@ include::./common/preamble.adoc[]
 
 include::./common/000-099.adoc[]
 
-== Metabolomics
+include::./recipes/introduction.adoc[]
+include::./{topic-slug}/recipes.adoc[]
 
-include::./metabolomics/recipes.adoc[]
-
-== Proteomics
-include::./proteomics/recipes.adoc[]
-
+include::./{topic-slug}/protocols.adoc[]
 
 include::./common/900-999.adoc[]
 
 include::./common/bibliography.adoc[]
 
 include::./metabolomics/bibliography.adoc[]
-
 include::./proteomics/bibliography.adoc[]
 
 include::./common/postamble.adoc[]

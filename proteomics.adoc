@@ -7,9 +7,11 @@ include::./common/preamble.adoc[]
 
 include::./common/000-099.adoc[]
 
-== Recipes
-
+include::./recipes/introduction.adoc[]
 include::./{topic-slug}/recipes.adoc[]
+
+include::./protocols/introduction.adoc[]
+include::./{topic-slug}/protocols.adoc[]
 
 include::./common/900-999.adoc[]
 
