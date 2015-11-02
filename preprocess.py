@@ -122,5 +122,4 @@ for file in adocs:
 
     # Clean up empty folder
     if os.listdir(folder) == []:
-        print("DELETING", folder)
         os.rmdir(folder)
